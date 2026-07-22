@@ -1,0 +1,10 @@
+C:\Users\poowa\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075\MQL5\Experts\XAU-AI-PLATFORM\core\logging\list.txt
+C:\Users\poowa\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075\MQL5\Experts\XAU-AI-PLATFORM\core\logging\LogEntry.mqh
+C:\Users\poowa\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075\MQL5\Experts\XAU-AI-PLATFORM\core\logging\LogFormatter.mqh
+C:\Users\poowa\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075\MQL5\Experts\XAU-AI-PLATFORM\core\logging\LogLevel.mqh
+C:\Users\poowa\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075\MQL5\Experts\XAU-AI-PLATFORM\core\logging\LogManager.mqh
+C:\Users\poowa\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075\MQL5\Experts\XAU-AI-PLATFORM\core\logging\LogOutput.mqh
+C:\Users\poowa\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075\MQL5\Experts\XAU-AI-PLATFORM\core\logging\NullOutput.mqh
+C:\Users\poowa\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075\MQL5\Experts\XAU-AI-PLATFORM\core\logging\models\LogContext.mqh
+C:\Users\poowa\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075\MQL5\Experts\XAU-AI-PLATFORM\core\logging\outputs\FileOutput.mqh
+C:\Users\poowa\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075\MQL5\Experts\XAU-AI-PLATFORM\core\logging\outputs\JournalOutput.mqh

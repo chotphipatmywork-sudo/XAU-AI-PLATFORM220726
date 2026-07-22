@@ -1,0 +1,7 @@
+C:\Users\poowa\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075\MQL5\Experts\XAU-AI-PLATFORM\core\scheduler\EventDispatcher.mqh
+C:\Users\poowa\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075\MQL5\Experts\XAU-AI-PLATFORM\core\scheduler\EventLoop.mqh
+C:\Users\poowa\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075\MQL5\Experts\XAU-AI-PLATFORM\core\scheduler\list.txt
+C:\Users\poowa\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075\MQL5\Experts\XAU-AI-PLATFORM\core\scheduler\Scheduler.mqh
+C:\Users\poowa\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075\MQL5\Experts\XAU-AI-PLATFORM\core\scheduler\SchedulerManager.mqh
+C:\Users\poowa\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075\MQL5\Experts\XAU-AI-PLATFORM\core\scheduler\TickDispatcher.mqh
+C:\Users\poowa\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075\MQL5\Experts\XAU-AI-PLATFORM\core\scheduler\TimerDispatcher.mqh

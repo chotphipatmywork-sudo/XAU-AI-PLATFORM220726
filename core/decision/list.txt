@@ -1,0 +1,13 @@
+C:\Users\poowa\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075\MQL5\Experts\XAU-AI-PLATFORM\core\decision\assembler
+C:\Users\poowa\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075\MQL5\Experts\XAU-AI-PLATFORM\core\decision\config
+C:\Users\poowa\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075\MQL5\Experts\XAU-AI-PLATFORM\core\decision\DecisionAnalyzer.mqh
+C:\Users\poowa\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075\MQL5\Experts\XAU-AI-PLATFORM\core\decision\DecisionAssembler.mqh
+C:\Users\poowa\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075\MQL5\Experts\XAU-AI-PLATFORM\core\decision\DecisionManager.mqh
+C:\Users\poowa\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075\MQL5\Experts\XAU-AI-PLATFORM\core\decision\DecisionPipeline.mqh
+C:\Users\poowa\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075\MQL5\Experts\XAU-AI-PLATFORM\core\decision\DecisionWorkspace.mqh
+C:\Users\poowa\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075\MQL5\Experts\XAU-AI-PLATFORM\core\decision\engines
+C:\Users\poowa\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075\MQL5\Experts\XAU-AI-PLATFORM\core\decision\list.txt
+C:\Users\poowa\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075\MQL5\Experts\XAU-AI-PLATFORM\core\decision\models
+C:\Users\poowa\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075\MQL5\Experts\XAU-AI-PLATFORM\core\decision\engines\DecisionEngine.mqh
+C:\Users\poowa\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075\MQL5\Experts\XAU-AI-PLATFORM\core\decision\models\DecisionContext.mqh
+C:\Users\poowa\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075\MQL5\Experts\XAU-AI-PLATFORM\core\decision\models\DecisionResult.mqh

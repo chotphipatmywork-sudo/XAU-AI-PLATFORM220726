@@ -1,0 +1,30 @@
+{
+  "quality_exclusion_schema_version": "1.0.0",
+  "symbol": "XAUUSD",
+  "tester_model": "Every tick based on real ticks",
+  "period_start": "2021-07-01",
+  "period_end_exclusive": "2026-06-30",
+  "source_log": "C:\\Users\\poowa\\AppData\\Roaming\\MetaQuotes\\Tester\\D0E8209F77C8CF37AD8BF550E51FF075\\Agent-127.0.0.1-3000\\logs\\20260719.log",
+  "aggregate_minute_bars": 1766605,
+  "real_ticks_absent_minutes": 1539,
+  "real_ticks_discarded_minutes": 15053,
+  "whole_days_discarded": 1,
+  "excluded_dates": [
+    {"date": "2021-07-16", "reason": "MT5 reported absent real ticks."},
+    {"date": "2021-10-14", "reason": "MT5 reported absent real ticks."},
+    {"date": "2021-12-31", "reason": "MT5 reported absent, discarded, and mismatched real ticks."},
+    {"date": "2022-07-05", "reason": "MT5 reported absent, discarded, and mismatched real ticks."},
+    {"date": "2022-11-18", "reason": "MT5 reported absent, discarded, and mismatched real ticks."},
+    {"date": "2023-04-24", "reason": "MT5 reported discarded and mismatched real ticks."},
+    {"date": "2023-09-07", "reason": "MT5 reported absent, discarded, and mismatched real ticks."},
+    {"date": "2023-10-03", "reason": "MT5 reported absent, discarded, and mismatched real ticks."},
+    {"date": "2024-10-02", "reason": "MT5 reported absent, discarded, and mismatched real ticks."},
+    {"date": "2025-10-02", "reason": "MT5 reported absent, discarded, and mismatched real ticks."},
+    {"date": "2025-11-19", "reason": "MT5 discarded the whole real-tick day after price mismatches."},
+    {"date": "2025-12-15", "reason": "MT5 reported discarded and mismatched real ticks."},
+    {"date": "2025-12-19", "reason": "MT5 reported absent, discarded, and mismatched real ticks."},
+    {"date": "2026-05-01", "reason": "MT5 reported absent, discarded, and mismatched real ticks."},
+    {"date": "2026-05-26", "reason": "MT5 reported absent, discarded, and mismatched real ticks."},
+    {"date": "2026-06-01", "reason": "MT5 reported absent, discarded, and mismatched real ticks."}
+  ]
+}

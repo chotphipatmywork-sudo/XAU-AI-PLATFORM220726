@@ -1,0 +1,17 @@
+
+C:\Users\poowa\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075\MQL5\Experts\XAU-AI-PLATFORM\core\market\MarketData.mqh
+C:\Users\poowa\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075\MQL5\Experts\XAU-AI-PLATFORM\core\market\analyzers\MarketAnalyzer.mqh
+C:\Users\poowa\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075\MQL5\Experts\XAU-AI-PLATFORM\core\market\detectors\BOSDetector.mqh
+C:\Users\poowa\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075\MQL5\Experts\XAU-AI-PLATFORM\core\market\detectors\CHOCHDetector.mqh
+C:\Users\poowa\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075\MQL5\Experts\XAU-AI-PLATFORM\core\market\detectors\FVGDetector.mqh
+C:\Users\poowa\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075\MQL5\Experts\XAU-AI-PLATFORM\core\market\detectors\LiquidityDetector.mqh
+C:\Users\poowa\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075\MQL5\Experts\XAU-AI-PLATFORM\core\market\detectors\OrderBlockDetector.mqh
+C:\Users\poowa\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075\MQL5\Experts\XAU-AI-PLATFORM\core\market\detectors\StructureDetector.mqh
+C:\Users\poowa\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075\MQL5\Experts\XAU-AI-PLATFORM\core\market\detectors\SwingDetector.mqh
+C:\Users\poowa\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075\MQL5\Experts\XAU-AI-PLATFORM\core\market\Engine\MarketEngine.mqh
+C:\Users\poowa\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075\MQL5\Experts\XAU-AI-PLATFORM\core\market\models\MarketContext.mqh
+C:\Users\poowa\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075\MQL5\Experts\XAU-AI-PLATFORM\core\market\models\PriceSeries.mqh
+C:\Users\poowa\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075\MQL5\Experts\XAU-AI-PLATFORM\core\market\models\StructureState.mqh
+C:\Users\poowa\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075\MQL5\Experts\XAU-AI-PLATFORM\core\market\models\SwingPoint.mqh
+C:\Users\poowa\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075\MQL5\Experts\XAU-AI-PLATFORM\core\market\providers\MarketManager.mqh
+C:\Users\poowa\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075\MQL5\Experts\XAU-AI-PLATFORM\core\market\providers\MarketProvider.mqh

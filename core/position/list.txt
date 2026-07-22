@@ -1,0 +1,14 @@
+C:\Users\poowa\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075\MQL5\Experts\XAU-AI-PLATFORM\core\position\list.txt
+C:\Users\poowa\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075\MQL5\Experts\XAU-AI-PLATFORM\core\position\PositionAnalyzer.mqh
+C:\Users\poowa\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075\MQL5\Experts\XAU-AI-PLATFORM\core\position\PositionCloser.mqh
+C:\Users\poowa\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075\MQL5\Experts\XAU-AI-PLATFORM\core\position\PositionLifecycle.mqh
+C:\Users\poowa\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075\MQL5\Experts\XAU-AI-PLATFORM\core\position\PositionManager.mqh
+C:\Users\poowa\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075\MQL5\Experts\XAU-AI-PLATFORM\core\position\PositionModifier.mqh
+C:\Users\poowa\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075\MQL5\Experts\XAU-AI-PLATFORM\core\position\PositionMonitor.mqh
+C:\Users\poowa\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075\MQL5\Experts\XAU-AI-PLATFORM\core\position\PositionPipeline.mqh
+C:\Users\poowa\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075\MQL5\Experts\XAU-AI-PLATFORM\core\position\PositionTracker.mqh
+C:\Users\poowa\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075\MQL5\Experts\XAU-AI-PLATFORM\core\position\PositionUpdater.mqh
+C:\Users\poowa\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075\MQL5\Experts\XAU-AI-PLATFORM\core\position\assembler\PositionAssembler.mqh
+C:\Users\poowa\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075\MQL5\Experts\XAU-AI-PLATFORM\core\position\models\PositionContext.mqh
+C:\Users\poowa\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075\MQL5\Experts\XAU-AI-PLATFORM\core\position\models\PositionResult.mqh
+C:\Users\poowa\AppData\Roaming\MetaQuotes\Terminal\D0E8209F77C8CF37AD8BF550E51FF075\MQL5\Experts\XAU-AI-PLATFORM\core\position\models\PositionSnapshot.mqh
