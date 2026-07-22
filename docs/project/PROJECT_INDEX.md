@@ -247,5 +247,11 @@ PROJECT_CONSTITUTION.md
 ARCHITECTURE_FREEZE.md
 DOCUMENTATION_GOVERNANCE.md
 Change History
+
+Related active research change requests:
+
+- `CR-015_Pre_Train_History_Augmentation.md`: isolated pre-Train real-tick
+  evidence collection with frozen Validation/Test hashes and permanent NO-GO.
+
 Version Date    Change Description
 1.0.0   Phase 0.3   Initial Project Documentation Index created
