@@ -145,6 +145,27 @@ period. It neither opens Validation/Test nor authorizes a Session filter,
 Stage 2, Runtime integration, or deployment. Only the already frozen
 post-2026.06.26 untouched-period contract may confirm these hypotheses.
 
+## Preliminary post-cutoff evidence
+
+On 2026-07-22, the canonical Objective M15/M5 tester-only provider completed a
+local real-tick run on XAUUSD M15 covering `2026.06.27` through `2026.07.20`.
+The run produced 1,440 Decisions, eight structural plans, and seven trainable
+mature outcomes: one `TARGET_FIRST`, six `STOP_FIRST`, and one quarantined
+`AMBIGUOUS` outcome. No source-quality exclusion was applied.
+
+The run retained all required safety properties: broker state unchanged,
+safety valid, model deployment false, live execution false, and model status
+`OBJECTIVE_STRUCTURAL_PLAN_RESEARCH_NO_GO`. Its source artifacts and a
+separately named preliminary Dataset were archived under
+`training/output/cr014_session_confirmation_preliminary_20260627_20260720`.
+
+This evidence is insufficient for Stage 1B. Seven mature rows are below the
+frozen minimum of 80, so no confirmation analysis, Stage 2 request, training,
+Runtime change, Forward promotion, deployment, or live execution is
+authorized. The next eligible run must preserve the same post-cutoff start and
+extend only the end date as genuinely later real-tick history becomes
+available.
+
 ## Success and rejection
 
 Success requires better cost-aware Setup precision without destroying coverage,
