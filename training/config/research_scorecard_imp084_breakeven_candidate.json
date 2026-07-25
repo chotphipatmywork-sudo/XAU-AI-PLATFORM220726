@@ -1,0 +1,60 @@
+{
+  "scorecard_input_schema_version": "1.0.0",
+  "experiment_id": "IMP-084",
+  "candidate_id": "cost_covered_breakeven_after_close_1r",
+  "candidate_role": "CANDIDATE",
+  "evidence_date": "2026-07-23",
+  "evidence_hashes": {
+    "request": "42FB2CA1EA960ADB902D868E06E134D95D9229DEB5B38E01BA6DD8FA19CBAD10",
+    "request_manifest": "2FE5B5E6FB9EC63796E1F230FFDE1D3539EF70C29D9FBF3B3E779A3273BDD220",
+    "m5_path_export": "AF4C0031F9EDEB58F4FFB7B4F86044938FA992DABD8A804AFEB7BB9090693758",
+    "replay_report": "97675D0EBDF8ED85A88E6B118A9412F2513477E85DD6C84B38FFE309362D2630",
+    "effective_sample_audit": "2646BBD8E881B6BB7F8621E27D1933BE1376711C75558E046B9EA964A1393414"
+  },
+  "research_quality": {
+    "hypothesis_preregistered": true,
+    "artifact_hashes_verified": true,
+    "past_only_enforced": true,
+    "validation_sealed": true,
+    "test_sealed": true,
+    "data_quality_coverage_rate": 1.0,
+    "replay_parity_passed": true,
+    "regression_passed": true,
+    "compile_clean": true,
+    "effective_sample_audited": true,
+    "safety_governance_passed": true
+  },
+  "strategy_evidence": {
+    "mature_records": 232,
+    "effective_sample_records": 232,
+    "minimum_effective_sample": 200,
+    "mean_cost_aware_r": -0.07870474873554786,
+    "mean_r_ci95_lower": -0.2667219838388204,
+    "drawdown_gate_passed": false,
+    "positive_chronological_blocks": 1,
+    "chronological_blocks_tested": 4,
+    "positive_directions": 0,
+    "directions_tested": 2,
+    "cost_stress_passed": false,
+    "ranker_required": true,
+    "ranker_passing_folds": 0,
+    "ranker_total_folds": 4,
+    "locked_validation_passed": false,
+    "forward_shadow_passed": false
+  },
+  "operational_safety": {
+    "focused_tests_passed": true,
+    "runtime_compile_clean": true,
+    "regression_passed": true,
+    "safety_locks_valid": true,
+    "broker_state_unchanged": true,
+    "artifact_set_complete": true,
+    "deployment_authorized": false
+  },
+  "notes": [
+    "The pre-registered cost-covered Breakeven rule was replayed causally after a completed +1R M5 close and became active only on the next bar.",
+    "At 1.0x cost it produced 59 managed stops but Mean R remained negative; 1.25x and 1.50x cost stress also remained negative.",
+    "Candidate-dependent ranker evidence was not run because the Candidate failed its earlier Train gates; unknown fold credit is zero.",
+    "The Candidate is rejected and cannot open Validation, change Runtime, or authorize Deployment."
+  ]
+}

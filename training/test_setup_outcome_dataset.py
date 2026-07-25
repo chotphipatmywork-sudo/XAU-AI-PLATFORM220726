@@ -15,6 +15,8 @@ from build_setup_outcome_dataset import (
     OBJECTIVE_MODEL_STATUS,
     OBJECTIVE_PROVIDER,
     SETUP_AUDIT_COLUMNS,
+    SETUP_AUDIT_COLUMNS_V2,
+    SETUP_AUDIT_COLUMNS_V3,
     build_dataset,
 )
 
@@ -132,6 +134,46 @@ def plan_row(
     return row
 
 
+def plan_row_v2(
+    observation: datetime,
+    direction: str,
+    entry: float,
+    stop: float,
+    target: float,
+) -> dict[str, object]:
+    source = plan_row(observation, direction, entry, stop, target)
+    row = {column: source.get(column, "") for column in SETUP_AUDIT_COLUMNS_V2}
+    row.update({
+        "entry_bar_open": format_minutes(observation - timedelta(minutes=10)),
+        "confirmation_bar_open": format_minutes(
+            observation - timedelta(minutes=5)
+        ),
+        "continuation_confirmed": "true",
+        "confirmation_extension_atr": 0.1,
+    })
+    return row
+
+
+def plan_row_v3(
+    observation: datetime,
+    direction: str,
+    entry: float,
+    stop: float,
+    target: float,
+) -> dict[str, object]:
+    source = plan_row(observation, direction, entry, stop, target)
+    row = {column: source.get(column, "") for column in SETUP_AUDIT_COLUMNS_V3}
+    row.update({
+        "context_bar_open": format_minutes(
+            observation - timedelta(minutes=10)
+        ),
+        "entry_bar_open": format_minutes(observation - timedelta(minutes=5)),
+        "reversal_context_confirmed": "true",
+        "trigger_engulfment_atr": 0.1,
+    })
+    return row
+
+
 def expect_failure(setup_path: Path, decisions_path: Path, message: str) -> None:
     try:
         build_dataset(setup_path, decisions_path)
@@ -169,6 +211,46 @@ def main() -> None:
             raise AssertionError("TIMEOUT did not observe the frozen 64-bar horizon")
         if rows[3]["trainable"] != "false" or rows[4]["trainable"] != "false":
             raise AssertionError("Ambiguous or unmatured Setup entered the training set")
+
+        setups_v2 = [
+            plan_row_v2(
+                start + timedelta(minutes=15),
+                "TRADE_SETUP_BUY", 100.0, 90.0, 121.0,
+            )
+        ]
+        write_csv(setup_path, SETUP_AUDIT_COLUMNS_V2, setups_v2)
+        v2_rows, v2_summary = build_dataset(setup_path, decisions_path)
+        if (v2_summary["setup_audit_schema_version"] != "2.0.0"
+                or v2_rows[0]["outcome"] != "TARGET_FIRST"):
+            raise AssertionError("CR-016 Setup Audit V2 was not accepted")
+        invalid_v2 = [dict(setups_v2[0])]
+        invalid_v2[0]["continuation_confirmed"] = "false"
+        write_csv(setup_path, SETUP_AUDIT_COLUMNS_V2, invalid_v2)
+        expect_failure(
+            setup_path, decisions_path,
+            "CR-016 plan bypassed continuation confirmation",
+        )
+
+        setups_v3 = [
+            plan_row_v3(
+                start + timedelta(minutes=15),
+                "TRADE_SETUP_BUY", 100.0, 90.0, 121.0,
+            )
+        ]
+        write_csv(setup_path, SETUP_AUDIT_COLUMNS_V3, setups_v3)
+        v3_rows, v3_summary = build_dataset(setup_path, decisions_path)
+        if (v3_summary["setup_audit_schema_version"] != "3.0.0"
+                or v3_rows[0]["outcome"] != "TARGET_FIRST"):
+            raise AssertionError("CR-017 Setup Audit V3 was not accepted")
+        invalid_v3 = [dict(setups_v3[0])]
+        invalid_v3[0]["reversal_context_confirmed"] = "false"
+        write_csv(setup_path, SETUP_AUDIT_COLUMNS_V3, invalid_v3)
+        expect_failure(
+            setup_path, decisions_path,
+            "CR-017 plan bypassed reversal context",
+        )
+
+        write_csv(setup_path, SETUP_AUDIT_COLUMNS, setups)
 
         quality_rows, quality_summary = build_dataset(
             setup_path,

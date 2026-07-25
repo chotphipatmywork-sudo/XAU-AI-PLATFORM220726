@@ -2,8 +2,8 @@
 //| Project : XAU AI PLATFORM                                        |
 //| File    : ObjectiveMultiTimeframeSetupEvidence.mqh               |
 //| Layer   : Core / AI / Strategy / Models                          |
-//| Version : 1.0.0                                                  |
-//| Purpose : Auditable objective M15/M5 setup evidence              |
+//| Version : 1.2.0                                                  |
+//| Purpose : Auditable M15/M5 reversal-context setup evidence       |
 //+------------------------------------------------------------------+
 
 #ifndef XAU_OBJECTIVE_MTF_EVIDENCE_MQH
@@ -17,6 +17,7 @@ public:
    bool                       ValidObservation;
    bool                       PoiConfirmed;
    bool                       TriggerConfirmed;
+   bool                       ReversalContextConfirmed;
    ENUM_TRADE_SETUP_DIRECTION Direction;
    double                     ReferencePoiPrice;
    double                     NearestTargetPrice;
@@ -24,6 +25,7 @@ public:
    double                     SweepTolerancePrice;
    double                     SweepPenetrationAtr;
    double                     ReclaimDistanceAtr;
+   double                     TriggerEngulfmentAtr;
    double                     StructuralStopPrice;
    string                     Reason;
 
@@ -37,6 +39,7 @@ public:
       ValidObservation=false;
       PoiConfirmed=false;
       TriggerConfirmed=false;
+      ReversalContextConfirmed=false;
       Direction=TRADE_SETUP_NONE;
       ReferencePoiPrice=0.0;
       NearestTargetPrice=0.0;
@@ -44,6 +47,7 @@ public:
       SweepTolerancePrice=0.0;
       SweepPenetrationAtr=0.0;
       ReclaimDistanceAtr=0.0;
+      TriggerEngulfmentAtr=0.0;
       StructuralStopPrice=0.0;
       Reason="";
      }

@@ -32,6 +32,42 @@ are exactly the existing twelve Feature Schema 4.0 values. Plan prices, RR,
 MFE/MAE, outcome, Risk, and Execution fields are audit-only and forbidden from
 the model matrix.
 
+CR-016 Setup Audit Schema 2.0 adds the exact confirmation-bar open,
+continuation-confirmed flag, and confirmation extension. The Dataset builder
+continues to accept preserved Schema 1.0 artifacts, but a Schema 2.0 plan is
+rejected unless both its sweep/reclaim trigger and continuation confirmation
+are true. This compatibility does not mix candidate evidence; comparisons must
+retain their source contract identity.
+
+The frozen CR-016 candidate was rejected at its 2021-06 real-tick smoke gate:
+1,911 observations produced 121 confirmed POIs, 28 triggers, 12 continuation
+confirmations, and zero valid structural plans. The builder must continue to
+fail closed for that artifact; it must not be made trainable by reducing the
+minimum RR, changing structural Targets, or bypassing Risk.
+
+CR-017 Setup Audit Schema 3.0 replaces the rejected candidate fields with
+`context_bar_open`, `reversal_context_confirmed`, and
+`trigger_engulfment_atr`. The latest completed M5 bar is again the Entry
+trigger and the prior completed M5 bar is causal context. The Dataset builder
+preserves exact V1/V2 compatibility and refuses any V3 plan that bypasses the
+trigger or reversal-context evidence.
+
+The frozen CR-017 2021-06 real-tick smoke artifact contains 1,911 observations,
+103 confirmed POIs, 11 triggers, three reversal confirmations, and zero valid
+plans. All three plan RR values were below `0.80R`, so the V3 artifact must
+remain non-trainable and the candidate is retired without relaxing `2.0R`.
+
+`diagnose_structural_opportunity.py` replaces serial Runtime trials with a
+hash-frozen Train-only geometry audit. It combines quality-admissible CR-015
+pre-Train evidence and the main Objective source only before the frozen
+Validation cutoff, then reports trigger disposition, RR/Target shortfall,
+direction, Session bucket, chronological blocks, and the augmented Train
+outcome baseline. It cannot read Validation/Test partitions, train, modify
+Runtime, or authorize Deployment. The current result found 1,777 triggers but
+only 234 accepted plans; median calculable RR was `0.883R`, while the accepted
+233-plan Train baseline retained mean return `-0.078R`. A past-only multi-level
+Target artifact is required before another Runtime Change Request.
+
 The canonical join time is the completed M15 boundary. With real ticks, the
 actual Decision `recorded_at` may follow that boundary by zero to 120 seconds
 while waiting for the first tick. Early timestamps and lags above the frozen
@@ -56,6 +92,13 @@ no Stage D script can integrate MQL5 Runtime or authorize deployment.
 The registered five-year Train-only run failed its stable four-fold gate. It
 wrote diagnostics only; no preliminary model exists and Validation/Test remain
 sealed.
+
+CR-015 may prepend quality-controlled outcomes strictly earlier than the frozen
+Train boundary with `augment_pretrain_history.py`. The tool verifies the frozen
+Train/Validation/Test SHA-256 values, parses only Train sources, and treats
+Validation/Test as opaque hash inputs. The 200/40/40 readiness gate remains
+unchanged; passing readiness permits only the existing Train-only purged
+walk-forward ranker and does not authorize deployment.
 
 CR-014 Stage 1 can inspect preregistered Setup V2 associations without fitting
 a model or accepting Validation/Test paths:
@@ -143,6 +186,48 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass `
 The comparison requires exact Objective Setup/Plan and Feature Schema 4.0
 parity. It ignores Risk and paper lifecycle differences. Its current failure
 must not be weakened; final strategy evidence also uses real ticks.
+
+## Current-feed Setup funnel
+
+After a broker-feed parity failure, the complete current `XAUUSD` real-tick
+evidence is kept separate from all preserved feed artifacts. Its Setup Audit is
+hash-locked and the preregistered current-feed Train-only funnel can be run
+with:
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass `
+  -File .\tools\diagnose_current_feed_setup_funnel.ps1
+```
+
+The diagnostic stops before `2024-07-01 00:00`, never accepts Validation/Test
+paths, and cannot train, modify Runtime/Risk, relax `2.0R`, or authorize
+deployment.
+
+The corresponding outcome-blind current-feed Target-ladder request can be
+prepared with:
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass `
+  -File .\tools\prepare_current_feed_target_research.ps1
+```
+
+It includes only reversal-confirmed contexts before the same Train cutoff and
+retains the frozen `2.0R` contract.
+
+After the strict Target replay, current-feed Entry/Stop path behavior can be
+measured without selecting a candidate:
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass `
+  -File .\tools\diagnose_current_feed_entry_stop.ps1
+```
+
+The preregistered current-feed M5 lifecycle request can then be prepared with:
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass `
+  -File .\tools\prepare_current_feed_lifecycle_research.ps1
+```
 
 ## What it trains
 
@@ -458,3 +543,225 @@ After `TestHistoricalH1ContextExporter` creates
 
 The research file is joined by Dataset ID and Timestamp. It does not change the
 active Feature Schema and cannot authorize deployment.
+
+## Past-only structural Target replay
+
+IMP-080 replaces serial Runtime CR trials with an isolated Train-only Target
+ladder export. Prepare the frozen 1,777-request artifact and copy it to the MT5
+Files sandbox with:
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass `
+  -File .\tools\prepare_past_only_target_research.ps1
+```
+
+Compile the focused exporter with:
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass `
+  -File .\tools\compile_past_only_target_research.ps1
+```
+
+Before the first historical collection, set MT5 `Tools > Options > Charts >
+Max bars in chart` to `Unlimited` and restart MT5. The exporter prefetches the
+required M5/M15 windows from local annual history and reports the current
+Terminal Max Bars value if history remains unavailable.
+
+Attach `TestPastOnlyStructuralTargetExporter` once to an XAUUSD chart. It has
+no order calls, writes `XAU_AI_PAST_ONLY_TARGET_LADDERS.csv`, reports
+`deployment=false`, and removes itself. Then collect and run the sealed replay:
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass `
+  -File .\tools\collect_past_only_target_research.ps1
+```
+
+The replay uses only observations and mature outcomes before the frozen Train
+cutoff. Validation/Test, Runtime, Risk, Forward, and Deployment remain sealed.
+
+The completed 1,777-request replay rejected all seven Target-only candidates.
+The current Target reproduced the frozen `-0.078R` baseline; every alternative
+with at least 200 mature records also had negative mean cost-aware R. See
+`IMP-080_Past_Only_Multilevel_Structural_Target_Replay.md` before proposing
+further Entry/Stop research.
+
+## Research Scorecard Standard 1.0
+
+Generate the current frozen Baseline scorecard with:
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass `
+  -File .\tools\build_research_scorecard.ps1
+```
+
+For a later Candidate, pass `-MetricsPath`, `-ScorecardPath`, and optionally
+`-ReferencePath` pointing to the accepted Baseline scorecard. The calculator
+reports Research Quality, Strategy Evidence, Operational Safety, weighted
+Overall Readiness, component deltas, G0-G8, and the final NO-GO/review status.
+Unknown evidence receives no invented credit and a failed Train gate caps the
+overall score at 49 regardless of Engineering quality.
+
+## Effective Setup Sample audit
+
+Audit the frozen IMP-080/CR-015 Train baseline for duplicate and overlapping
+outcome windows with:
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass `
+  -File .\tools\audit_effective_setup_sample.ps1
+```
+
+The default command verifies the frozen augmented-Train SHA-256 and writes the
+IMP-082 report. It uses maximum-cardinality half-open interval scheduling and
+cannot read Validation/Test, train a model, modify Runtime/Risk, or authorize
+Deployment. To reproduce the updated score and its delta from IMP-080:
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass `
+  -File .\tools\build_research_scorecard.ps1 `
+  -MetricsPath training\config\research_scorecard_imp082_effective_sample.json `
+  -ScorecardPath training\output\research_scorecard_imp082_effective_sample\research_scorecard.json `
+  -ReferencePath training\output\research_scorecard_current\research_scorecard.json
+```
+
+## Effective Entry/Stop expectancy diagnostic
+
+After IMP-082 passes G1, reproduce the Effective-Train expectancy, MFE/MAE,
+drawdown, and loss-tail evidence with:
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass `
+  -File .\tools\diagnose_entry_stop_expectancy.ps1
+```
+
+The command verifies both frozen SHA-256 values, uses the 232-record maximum
+non-overlapping sample, and emits a deterministic moving-block 95% confidence
+interval. It cannot read Validation/Test, select a Candidate, train a model,
+or change Runtime/Risk/Deployment. The completed IMP-083 result identifies
+favorable-excursion giveback but requires a causal M5/real-tick lifecycle
+replay before any Breakeven or Trailing rule may be proposed.
+
+## Causal M5 lifecycle-management replay
+
+IMP-084 freezes the Baseline, cost-covered Breakeven after a completed `+1R`
+M5 close, and a two-stage `+1R/+2R` Ratchet before M5 paths are collected.
+Prepare the 232 hash-sealed requests and copy them to MT5 with:
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass `
+  -File .\tools\prepare_lifecycle_path_research.ps1
+```
+
+Compile and sync the offline exporter with:
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass `
+  -File .\tools\compile_lifecycle_path_research.ps1
+```
+
+Attach `TestPastOnlyLifecyclePathExporter` once to an XAUUSD chart. It exports
+only mature M5 OHLC paths, reports `deployment=false`, and removes itself.
+Then collect and replay with:
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass `
+  -File .\tools\collect_lifecycle_path_research.ps1
+```
+
+Same-M5 Target/active-Stop collisions are quarantined. The replay applies the
+frozen 1.00x/1.25x/1.50x cost stress and cannot read Validation/Test, alter
+Runtime/Risk, send orders, start Forward, or authorize Deployment.
+
+The completed 232-request replay passed exact Baseline parity. Breakeven Mean R
+was `-0.079R` and two-stage Ratchet Mean R was `-0.125R`, versus Baseline
+`-0.074R` at 1.00x cost. Both Candidates failed the frozen Train gates and were
+rejected. The accepted Baseline, Runtime, and `NO-GO` state remain unchanged.
+
+IMP-085 attributes the paired difference with:
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass `
+  -File .\tools\diagnose_lifecycle_differential_attribution.ps1
+```
+
+At 1.00x, Breakeven saved 42 Baseline Stops but clipped 17 Baseline Targets,
+for `-1.084R` net Delta. Ratchet saved 42 Stops but clipped 22 Targets, for
+`-7.032R` net Delta. Subgroup results are descriptive only and cannot authorize
+a filter or Runtime rule.
+
+## Canonical Setup-response attribution
+
+IMP-086 tests whether the approved Schema 4.0.0 Trend, Volatility, Liquidity,
+and Session groups distinguish the four causal lifecycle response classes:
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass `
+  -File .\tools\run_canonical_setup_response_attribution.ps1
+```
+
+The command verifies all frozen hashes, uses only the 232 non-overlapping
+Effective-Train records, recomputes IMP-085 class parity, runs four expanding
+past-only folds, and writes fixed-bucket explanations. It cannot read
+Validation/Test, select a threshold/filter, train a Runtime model, change
+Risk, or authorize Deployment.
+
+No canonical group passed the pre-registered readiness gate. Volatility was
+least weak with `+0.007` support gain, `0.287` balanced Accuracy, and `0.259`
+Macro F1, but only one of four folds was positive and a minority class had zero
+recall. Therefore no confirmation hypothesis or Candidate was selected and
+the accepted Baseline remains `NO_GO_TRAIN` at Overall Readiness `49/100`.
+
+## Existing Entry geometry outcome attribution
+
+IMP-087 strictly joins accepted Effective-Train outcomes to the frozen V1
+Setup Audit and tests Trigger Shape, Entry/Invalidation, and Payoff Geometry:
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass `
+  -File .\tools\run_entry_geometry_outcome_attribution.ps1
+```
+
+The command verifies all source hashes and exact Entry/Stop/Target/POI/RR/cost
+parity, evaluates four expanding past-only folds, and never reads Validation or
+Test. No view passed: Payoff Geometry was least weak at only `+0.0017` support
+gain, `0.514` balanced Accuracy, and `0.029` Target-first recall. Consequently
+no reclaim, POI, cost, or RR threshold is authorized. New trigger-event path
+evidence requires a separate approved tester-only exporter/schema change.
+
+## Past-only M5 trigger-event evidence
+
+IMP-088 is the approved outcome-blind evidence collector for the missing
+trigger-event detail. Prepare its 232 hash-sealed requests with:
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass `
+  -File .\tools\prepare_trigger_event_research.ps1
+```
+
+Sync and compile the isolated research EA with:
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass `
+  -File .\tools\compile_trigger_event_research.ps1
+```
+
+Keep Algo Trading disabled and attach `TestPastOnlyTriggerEventExporter` once
+to an XAUUSD chart. It replays the existing Brain ATR and confirmed swing
+contract, exports only trigger/context and older M5 evidence, and removes
+itself. Success is `Past-only trigger-event records written: 232`.
+
+Broker suffixes are supported: the canonical request remains `XAUUSD`, while
+the EA uses the chart `_Symbol` (for example `XAUUSD.sc`) as its data source
+and records both identities in export schema 1.1. Leave `DataSymbol` blank to
+use the current chart symbol.
+
+Then collect and validate the Artifact with:
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass `
+  -File .\tools\collect_trigger_event_research.ps1
+```
+
+Request and export schemas contain no Outcome label. The collector cannot read
+Validation/Test, train a model, change Feature Schema/Runtime/Risk, or
+authorize Deployment.

@@ -2,8 +2,8 @@
 //| Project : XAU AI PLATFORM                                        |
 //| File    : ObjectiveSetupAuditLogger.mqh                         |
 //| Layer   : Core / Telemetry                                      |
-//| Version : 1.0.0                                                  |
-//| Purpose : Audit objective setup, plan, Risk, and paper result    |
+//| Version : 1.2.0                                                  |
+//| Purpose : Audit CR-017 setup, plan, Risk, and paper result       |
 //+------------------------------------------------------------------+
 
 #ifndef XAU_OBJECTIVE_SETUP_AUDIT_MQH
@@ -49,9 +49,11 @@ public:
       if(FileSize(handle)==0)
          FileWrite(handle,
             "recorded_at","observation_time","symbol","higher_bar_open",
-            "entry_bar_open","direction","poi_confirmed","trigger_confirmed",
+            "context_bar_open","entry_bar_open","direction",
+            "poi_confirmed","trigger_confirmed","reversal_context_confirmed",
             "reference_poi","nearest_target","structural_stop",
-            "sweep_penetration_atr","reclaim_distance_atr","plan_available",
+            "sweep_penetration_atr","reclaim_distance_atr",
+            "trigger_engulfment_atr","plan_available",
             "plan_entry","plan_stop","plan_target","plan_rr","minimum_rr",
             "estimated_cost_points","setup_reason","ai_action","ai_confidence",
             "risk_valid","risk_allowed","risk_message","execution_success",
@@ -62,15 +64,18 @@ public:
          TimeToString(source.ObservationTime,TIME_DATE|TIME_MINUTES),
          source.Symbol,
          TimeToString(source.HigherBarOpenTime,TIME_DATE|TIME_MINUTES),
+         TimeToString(source.ContextBarOpenTime,TIME_DATE|TIME_MINUTES),
          TimeToString(source.EntryBarOpenTime,TIME_DATE|TIME_MINUTES),
          EnumToString(evidence.Direction),
          evidence.PoiConfirmed ? "true" : "false",
          evidence.TriggerConfirmed ? "true" : "false",
+         evidence.ReversalContextConfirmed ? "true" : "false",
          evidence.ReferencePoiPrice,
          evidence.NearestTargetPrice,
          evidence.StructuralStopPrice,
          evidence.SweepPenetrationAtr,
          evidence.ReclaimDistanceAtr,
+         evidence.TriggerEngulfmentAtr,
          planAvailable ? "true" : "false",
          plan.EntryPrice,
          plan.StopLossPrice,

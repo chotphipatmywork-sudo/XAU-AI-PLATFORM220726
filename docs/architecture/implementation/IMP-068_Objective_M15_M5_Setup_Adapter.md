@@ -116,6 +116,16 @@ Runtime, Strategy Tester provider selection, Risk, Execution, Forward, and
 broker mutation. Stage C requires explicit approval and a separate integration
 gate before a structure-aware Trade Plan can affect Shadow paper execution.
 
+## CR-016 research amendment
+
+CR-016/IMP-077 later added one tester-only two-bar M5 continuation candidate.
+The penultimate completed M5 bar retains this document's sweep/reclaim rules;
+the most recent completed M5 bar must hold the reclaimed POI and close farther
+in the same direction. This is a new research candidate, not a retrospective
+change to the accepted V1 evidence or an authorization for deployment. Its
+2021-06 real-tick smoke run reached zero valid structural plans, so CR-016 was
+rejected before long-period evidence, Ranking, Training, or Forward.
+
 ## Compile correction record
 
 The first focused MetaEditor attempt exposed two MQL5 language constraints:
@@ -124,3 +134,14 @@ the compiler identifier-length limit. Parameter names were changed to `source`
 and all four new include guards were shortened. No setup, timing, RR, Risk, or
 Execution behavior changed. The corrected focused recompile passed with
 0 errors and 0 warnings.
+
+## CR-017 research amendment
+
+After CR-016 failed its smoke gate, CR-017/IMP-078 restored Entry to the latest
+completed M5 sweep/reclaim trigger close. The preceding completed M5 bar is now
+causal reversal context only: BUY requires a bearish context body engulfed by
+the bullish trigger close, and SELL is symmetric. POI, minimum reclaim, Stop,
+Target, minimum RR, Risk ownership, and NO-GO locks remain unchanged.
+Its 2021-06 real-tick smoke run produced three reversal-confirmed observations,
+all below `0.80R`, and zero valid structural plans. CR-017 was therefore
+rejected before any longer-period run or downstream stage.

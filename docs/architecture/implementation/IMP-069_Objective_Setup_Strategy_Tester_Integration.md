@@ -48,6 +48,24 @@ Decision Intent -> Risk Gate
 - M15 Trend known time and M5 structure known time equal the observation;
 - no open/future M5 bar enters the source arrays.
 
+CR-016/IMP-077 changes only the tester-only candidate mapping: M5 shift 2 is
+the sweep/reclaim trigger and M5 shift 1 is the continuation confirmation. Both
+must be exact completed bars. The structural entry becomes the confirmation
+close; the original trigger extreme, Stop buffer, opposing-swing Target, Risk
+gate, and Shadow Execution boundary remain unchanged. The 2021-06 real-tick
+smoke run produced zero valid structural plans and rejected this candidate;
+this mapping remains research evidence only and may not proceed to a longer
+run, Ranking, Training, Forward, or deployment.
+
+CR-017/IMP-078 supersedes that rejected tester-only candidate mapping. M5 shift
+2 is causal context, M5 shift 1 is the sweep/reclaim trigger, and Entry is the
+trigger close. Confirmed swing structure and all input evidence are bounded by
+the trigger-close observation. Risk and Shadow Execution boundaries are
+unchanged, and the replacement remains permanently deployment-locked.
+The bounded real-tick smoke run later reached zero valid plans because all
+three reversal-confirmed observations were below minimum RR; CR-017 is retired
+and cannot proceed to a longer run, Ranking, Training, Forward, or Deployment.
+
 ## Execution contract
 
 The Execution-owned price plan contains direction, reference Entry, absolute

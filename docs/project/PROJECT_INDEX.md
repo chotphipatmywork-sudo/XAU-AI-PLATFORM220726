@@ -252,6 +252,68 @@ Related active research change requests:
 
 - `CR-015_Pre_Train_History_Augmentation.md`: isolated pre-Train real-tick
   evidence collection with frozen Validation/Test hashes and permanent NO-GO.
+- `../architecture/implementation/IMP-076_CR015_Pre_Train_Augmentation.md`:
+  fail-closed offline augmentation with opaque sealed-partition hash checks.
+- `CR-016_Two_Bar_M5_Continuation_Confirmation.md`: rejected frozen
+  tester-only two-bar M5 entry-confirmation candidate; its real-tick smoke run
+  reached zero valid structural plans and retained permanent NO-GO locks.
+- `../architecture/implementation/IMP-077_Two_Bar_M5_Continuation_Confirmation.md`:
+  isolated implementation, Audit V2 compatibility, compile evidence, and the
+  fail-closed real-tick smoke rejection.
+- `CR-017_Pre_Trigger_M5_Reversal_Context.md`: rejected frozen tester-only
+  reversal-context candidate; Entry returned to the trigger close but all
+  smoke candidates remained below the unchanged minimum `2.0R`.
+- `../architecture/implementation/IMP-078_CR017_Pre_Trigger_Reversal_Context.md`:
+  causal context/trigger mapping, Setup Audit V3, implementation evidence, and
+  the fail-closed real-tick smoke rejection.
+- `../architecture/implementation/IMP-079_Offline_Structural_Opportunity_Research.md`:
+  completed Train-only Entry/Stop/Target diagnosis confirming low structural
+  plan reachability and requiring multi-level past-only Target evidence before
+  another Runtime candidate; Validation/Test remain opaque.
+- `../architecture/implementation/IMP-080_Past_Only_Multilevel_Structural_Target_Replay.md`:
+  completed isolated M5/M15 confirmed Target-ladder replay; all seven
+  Target-only candidates failed the frozen Train gate and no Runtime CR or
+  Deployment was authorized.
+- `RESEARCH_SCORECARD_STANDARD.md`: active RSCS-1.0 weights, Hard Gates,
+  Baseline/Candidate progression rules, and required Before/After ledger.
+- `../architecture/implementation/IMP-081_Research_Scorecard_Automation.md`:
+  strict automated scorecard calculation; current Overall Readiness is 49/100
+  and remains Train NO-GO.
+- `../architecture/implementation/IMP-082_Effective_Setup_Sample_Audit.md`:
+  strict Train-only overlap audit; 232/233 non-overlapping outcomes pass G1,
+  while negative expectancy keeps Overall Readiness at 49/100 and NO-GO.
+- `../architecture/implementation/IMP-083_Effective_Entry_Stop_Expectancy_Diagnostic.md`:
+  audited 232-record expectancy, moving-block confidence interval, drawdown,
+  loss tail, and favorable-excursion giveback; no Candidate or CR authorized.
+- `../architecture/implementation/IMP-084_Causal_M5_Lifecycle_Management_Replay.md`:
+  completed 232-request Train-only M5 replay; cost-covered Breakeven and
+  two-stage Ratchet Candidates were rejected, with Initial Risk and all
+  Runtime/Deployment locks unchanged.
+- `../architecture/implementation/IMP-085_Lifecycle_Differential_Attribution.md`:
+  paired causal attribution shows saved Stop value was outweighed by clipped
+  Target value; no post-hoc subgroup filter or new lifecycle rule authorized.
+- `../architecture/implementation/IMP-086_Canonical_Setup_Response_Attribution.md`:
+  completed past-only response separability across the four canonical feature
+  groups; none passed the frozen confirmation gate, so no filter, Candidate,
+  Runtime change request, or Deployment was authorized.
+- `../architecture/implementation/IMP-087_Existing_Entry_Geometry_Outcome_Attribution.md`:
+  strict Train-only attribution of existing Trigger, Entry/Invalidation, and
+  Payoff Geometry; all views failed Target recall and stability gates, so no
+  threshold or Runtime Candidate was authorized.
+- `../architecture/implementation/IMP-088_Past_Only_M5_Trigger_Event_Evidence.md`:
+  approved outcome-blind tester-only exporter for missing M5 trigger/context,
+  POI-touch, and structural-age evidence; compile-clean and awaiting one MT5
+  collection run with Deployment locked false.
 
 Version Date    Change Description
 1.0.0   Phase 0.3   Initial Project Documentation Index created
+# Current-feed research
+
+- [IMP-089 Current-Feed Setup Funnel Diagnostic](../architecture/implementation/IMP-089_Current_Feed_Setup_Funnel_Diagnostic.md)
+- [IMP-090 Current-Feed Past-Only Target Ladder](../architecture/implementation/IMP-090_Current_Feed_Past_Only_Target_Ladder.md)
+- [IMP-091 Current-Feed Entry/Stop Diagnostic](../architecture/implementation/IMP-091_Current_Feed_Entry_Stop_Diagnostic.md)
+- [IMP-092 Current-Feed Causal M5 Lifecycle](../architecture/implementation/IMP-092_Current_Feed_Causal_M5_Lifecycle.md)
+- [IMP-093 Current-Feed Past-Only Stop Ladder](../architecture/implementation/IMP-093_Current_Feed_Past_Only_Stop_Ladder.md)
+- [IMP-094 Current-Feed Direction Asymmetry Audit](../architecture/implementation/IMP-094_Current_Feed_Direction_Asymmetry_Audit.md)
+- [IMP-095 Current-Feed Joint Geometry Frontier](../architecture/implementation/IMP-095_Current_Feed_Joint_Geometry_Frontier.md)
+- [IMP-096 Current-Feed Joint Geometry M5 Causal Replay](../architecture/implementation/IMP-096_Current_Feed_Joint_Geometry_M5_Causal_Replay.md)

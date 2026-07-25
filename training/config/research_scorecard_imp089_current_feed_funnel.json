@@ -1,0 +1,58 @@
+{
+  "scorecard_input_schema_version": "1.0.0",
+  "experiment_id": "IMP-089",
+  "candidate_id": "current_feed_xauusd_setup_funnel",
+  "candidate_role": "BASELINE",
+  "evidence_date": "2026-07-24",
+  "evidence_hashes": {
+    "setup_audit": "B6122AEA49F764055347B0459104DA53AD37EA815D2CC6568E4B0BC6885490F1",
+    "setup_outcome_dataset": "647C0FED4F9705BA95DFD28FD4CA86E731A2C1E82A372723F72B6C0E0DE2BD25",
+    "setup_funnel_diagnostic": "9350F0FD457A5BB4E61CE8990A22ABB31AEEE25A1504DBC7DFD018360BDB75C0"
+  },
+  "research_quality": {
+    "hypothesis_preregistered": true,
+    "artifact_hashes_verified": true,
+    "past_only_enforced": true,
+    "validation_sealed": true,
+    "test_sealed": true,
+    "data_quality_coverage_rate": 1.0,
+    "replay_parity_passed": true,
+    "regression_passed": true,
+    "compile_clean": true,
+    "effective_sample_audited": true,
+    "safety_governance_passed": true
+  },
+  "strategy_evidence": {
+    "mature_records": 31,
+    "effective_sample_records": 31,
+    "minimum_effective_sample": 200,
+    "mean_cost_aware_r": -0.11967599520045,
+    "mean_r_ci95_lower": null,
+    "drawdown_gate_passed": false,
+    "positive_chronological_blocks": 2,
+    "chronological_blocks_tested": 4,
+    "positive_directions": 1,
+    "directions_tested": 2,
+    "cost_stress_passed": false,
+    "ranker_required": false,
+    "ranker_passing_folds": 0,
+    "ranker_total_folds": 0,
+    "locked_validation_passed": false,
+    "forward_shadow_passed": false
+  },
+  "operational_safety": {
+    "focused_tests_passed": true,
+    "runtime_compile_clean": true,
+    "regression_passed": true,
+    "safety_locks_valid": true,
+    "broker_state_unchanged": true,
+    "artifact_set_complete": true,
+    "deployment_authorized": false
+  },
+  "notes": [
+    "IMP-089 establishes a separate current-feed baseline after cross-feed parity failed; no preserved outcome is mixed into this evidence.",
+    "The preregistered Train-only window contains 31 mature plans, 7 TARGET_FIRST and 24 STOP_FIRST, with mean cost-aware return -0.120R.",
+    "The dominant post-context failure is structural Target distance: 508 rows were below the frozen 2.0R minimum, while only 31 plans passed.",
+    "The lower Strategy score reflects a stricter, smaller current-feed baseline rather than a promoted or degraded Runtime candidate."
+  ]
+}

@@ -2,8 +2,8 @@
 //| Project : XAU AI PLATFORM                                        |
 //| File    : TestObjectiveSetupResearchProvider.mq5                |
 //| Layer   : Tests / AI / Strategy                                  |
-//| Version : 1.0.0                                                  |
-//| Purpose : Verify tester-only Objective Setup provider contract   |
+//| Version : 1.2.0                                                  |
+//| Purpose : Verify tester-only CR-017 provider contract            |
 //+------------------------------------------------------------------+
 
 #property strict
@@ -20,6 +20,7 @@ void BuildObjectiveBuySource(CObjectiveMultiTimeframeSetupInput &source)
    source.EntryTimeframe=PERIOD_M5;
    source.ObservationTime=D'2026.07.18 12:00';
    source.HigherBarOpenTime=D'2026.07.18 11:45';
+   source.ContextBarOpenTime=D'2026.07.18 11:50';
    source.EntryBarOpenTime=D'2026.07.18 11:55';
    source.HigherTrendKnownTime=source.ObservationTime;
    source.EntryStructureKnownTime=source.ObservationTime;
@@ -31,10 +32,14 @@ void BuildObjectiveBuySource(CObjectiveMultiTimeframeSetupInput &source)
    source.EntryStructure.Valid=true;
    source.EntryStructure.LatestSwingHigh=3030.0;
    source.EntryStructure.LatestSwingLow=2995.0;
+   source.ContextOpen=2995.6;
+   source.ContextHigh=2995.8;
+   source.ContextLow=2995.0;
+   source.ContextClose=2995.2;
    source.EntryOpen=2995.2;
-   source.EntryHigh=2996.0;
+   source.EntryHigh=2996.2;
    source.EntryLow=2994.7;
-   source.EntryClose=2995.5;
+   source.EntryClose=2995.8;
    source.EntryAtr=5.0;
    source.Point=0.01;
    source.EstimatedCostPoints=2.0;
@@ -50,10 +55,14 @@ void BuildObjectiveSellSource(CObjectiveMultiTimeframeSetupInput &source)
    source.HigherTrend.AITrendSlope=40.0;
    source.EntryStructure.LatestSwingHigh=3005.0;
    source.EntryStructure.LatestSwingLow=2960.0;
+   source.ContextOpen=3004.4;
+   source.ContextHigh=3004.9;
+   source.ContextLow=3004.2;
+   source.ContextClose=3004.8;
    source.EntryOpen=3004.8;
    source.EntryHigh=3005.3;
    source.EntryLow=3003.5;
-   source.EntryClose=3004.5;
+   source.EntryClose=3004.2;
   }
 
 bool EvaluateSource(CObjectiveSetupResearchProvider &provider,

@@ -1,10 +1,10 @@
 # CR-015 Pre-Train History Augmentation
 
-Version: 1.0.0
+Version: 1.1.0
 
 Date: 2026-07-22
 
-Status: Approved for isolated evidence collection; Runtime and deployment NO-GO
+Status: Completed; stable Train-only gate failed; Runtime and deployment NO-GO
 
 Architecture Baseline: ABR-1.0
 
@@ -64,9 +64,50 @@ walk-forward process may run. Passing Train ranking is evidence to request a
 later review; it does not authorize Validation/Test access, Runtime changes,
 Forward Shadow, deployment, broker orders, or live execution.
 
+## Collected source and quality gate
+
+The canonical XAUUSD M15 real-tick replay completed on 2026-07-22 for
+`2020.01.01` through `2021.06.30`. It retained broker state, wrote its report,
+returned `OnTester result 1`, kept the Objective model at
+`OBJECTIVE_STRUCTURAL_PLAN_RESEARCH_NO_GO`, and authorized no deployment. The
+paper lifecycle recorded 18 closed plans, all 18 reaching Stop before Target;
+this is evidence collection, not a promotion result.
+
+MT5 reported 52 distinct daily source-quality anomalies: 25 dates with absent,
+discarded, or mismatched real ticks and 27 dates with no real ticks. All 52
+dates are quarantined by the CR-015 versioned exclusion file. The audit parser
+was extended to fail closed on MT5's `no real ticks within a day` and
+`tick prices mismatch` daily message forms; aggregate range summaries remain
+excluded from daily-date parsing. Dataset construction and augmentation are
+forbidden until the focused audit test passes and the archived log reports
+complete quarantine coverage.
+
+After quarantine, Dataset construction retained 51 mature plans: 13
+Target-first and 38 Stop-first. Nine additional structural plans were excluded
+because their observation-to-outcome path touched a quarantined date. The
+admissible rows increased Train from 182 to 233 records, with 59 Target and 174
+non-Target outcomes, so the frozen 200/40/40 readiness gate passed. Frozen
+Train, Validation, and Test hashes matched before and after augmentation;
+Validation and Test were never parsed.
+
+The added 51 records had a 25.49% Target rate and -0.1275R mean cost-aware
+return. The augmented Train Target rate remained essentially unchanged at
+25.32%, while mean cost-aware return moved from -0.0641R to -0.0780R. The
+augmentation therefore solved only the sample-size deficiency; it did not
+establish a positive strategy edge.
+
+The registered four-fold outcome-known-time-purged ranker selected the balanced
+logistic candidate. Aggregate evaluation over 117 rows produced 41.18% Target
+precision, 60.00% Target recall, and 59.55% Macro F1. Only one of four folds
+passed the complete gate, so the stable research gate failed and no preliminary
+model artifact was written. Further model or threshold search is not authorized
+from this result.
+
 ## Safety state
 
-- model training authorized: false until augmented Train readiness passes;
+- offline Train-only selection performed: true;
+- stable research gate passed: false;
+- further model or threshold tuning authorized: false;
 - setup contract change authorized: false;
 - Runtime integration authorized: false;
 - model deployment authorized: false;

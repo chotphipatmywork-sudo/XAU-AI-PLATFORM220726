@@ -2,8 +2,8 @@
 //| Project : XAU AI PLATFORM                                        |
 //| File    : ObjectiveMultiTimeframeSetupAdapter.mqh                |
 //| Layer   : Core / AI / Strategy                                   |
-//| Version : 1.1.0                                                  |
-//| Purpose : Project objective M15/M5 setup with reclaim threshold  |
+//| Version : 1.3.0                                                  |
+//| Purpose : Causal M15/M5 reversal-context objective setup         |
 //+------------------------------------------------------------------+
 
 #ifndef XAU_OBJECTIVE_MTF_ADAPTER_MQH
@@ -34,21 +34,24 @@ private:
       return(MathIsValidNumber(value) && value>=0.0 && value<=100.0);
      }
 
-   bool ValidEntryBar(const CObjectiveMultiTimeframeSetupInput &source) const
+   bool ValidBar(const double openPrice,
+                 const double highPrice,
+                 const double lowPrice,
+                 const double closePrice) const
      {
-      if(!MathIsValidNumber(source.EntryOpen) ||
-         !MathIsValidNumber(source.EntryHigh) ||
-         !MathIsValidNumber(source.EntryLow) ||
-         !MathIsValidNumber(source.EntryClose) ||
-         source.EntryOpen<=0.0 || source.EntryHigh<=0.0 ||
-         source.EntryLow<=0.0 || source.EntryClose<=0.0)
+      if(!MathIsValidNumber(openPrice) ||
+         !MathIsValidNumber(highPrice) ||
+         !MathIsValidNumber(lowPrice) ||
+         !MathIsValidNumber(closePrice) ||
+         openPrice<=0.0 || highPrice<=0.0 ||
+         lowPrice<=0.0 || closePrice<=0.0)
          return(false);
 
-      return(source.EntryHigh>=source.EntryOpen &&
-             source.EntryHigh>=source.EntryClose &&
-             source.EntryHigh>=source.EntryLow &&
-             source.EntryLow<=source.EntryOpen &&
-             source.EntryLow<=source.EntryClose);
+      return(highPrice>=openPrice &&
+             highPrice>=closePrice &&
+             highPrice>=lowPrice &&
+             lowPrice<=openPrice &&
+             lowPrice<=closePrice);
      }
 
    ENUM_TRADE_SETUP_DIRECTION AlignedDirection(
@@ -106,19 +109,27 @@ public:
                        "Objective setup requires explicit M15 and M5 timeframes."));
 
       if(source.ObservationTime<=0 || source.HigherBarOpenTime<=0 ||
-         source.EntryBarOpenTime<=0 || source.HigherTrendKnownTime<=0 ||
+         source.ContextBarOpenTime<=0 ||
+         source.EntryBarOpenTime<=0 ||
+         source.HigherTrendKnownTime<=0 ||
          source.EntryStructureKnownTime<=0 ||
          source.HigherBarOpenTime+900!=source.ObservationTime ||
-         source.EntryBarOpenTime+300!=source.ObservationTime)
+         source.ContextBarOpenTime+600!=source.ObservationTime ||
+         source.EntryBarOpenTime+300!=source.ObservationTime ||
+         source.ContextBarOpenTime+300!=source.EntryBarOpenTime)
          return(Reject(context,evidence,
-                       "Objective setup requires synchronized completed M15 and M5 bars."));
+                       "Objective setup requires synchronized M15 and causal context/trigger M5 bars."));
 
       if(source.HigherTrendKnownTime!=source.ObservationTime ||
-         source.EntryStructureKnownTime>source.ObservationTime)
+         source.EntryStructureKnownTime!=source.ObservationTime)
          return(Reject(context,evidence,
                        "Objective setup contains future-known or stale timing evidence."));
 
-      if(!ValidEntryBar(source) || !MathIsValidNumber(source.EntryAtr) ||
+      if(!ValidBar(source.ContextOpen,source.ContextHigh,
+                   source.ContextLow,source.ContextClose) ||
+         !ValidBar(source.EntryOpen,source.EntryHigh,
+                   source.EntryLow,source.EntryClose) ||
+         !MathIsValidNumber(source.EntryAtr) ||
          !MathIsValidNumber(source.Point) ||
          !MathIsValidNumber(source.EstimatedCostPoints) ||
          !MathIsValidNumber(source.MinimumRiskReward) ||
@@ -202,6 +213,12 @@ public:
              source.EntryClose>evidence.ReferencePoiPrice &&
              source.EntryClose>source.EntryOpen &&
              evidence.ReclaimDistanceAtr+0.000000001>=m_config.MinimumReclaimAtr);
+         evidence.TriggerEngulfmentAtr=
+            MathMax(0.0,(source.EntryClose-source.ContextOpen)/source.EntryAtr);
+         evidence.ReversalContextConfirmed=
+            (evidence.TriggerConfirmed &&
+             source.ContextClose<source.ContextOpen &&
+             source.EntryClose>source.ContextOpen);
          evidence.StructuralStopPrice=source.EntryLow-stopBuffer;
         }
       else
@@ -221,11 +238,18 @@ public:
              source.EntryClose<evidence.ReferencePoiPrice &&
              source.EntryClose<source.EntryOpen &&
              evidence.ReclaimDistanceAtr+0.000000001>=m_config.MinimumReclaimAtr);
+         evidence.TriggerEngulfmentAtr=
+            MathMax(0.0,(source.ContextOpen-source.EntryClose)/source.EntryAtr);
+         evidence.ReversalContextConfirmed=
+            (evidence.TriggerConfirmed &&
+             source.ContextClose>source.ContextOpen &&
+             source.EntryClose<source.ContextOpen);
          evidence.StructuralStopPrice=source.EntryHigh+stopBuffer;
         }
 
       context.PointOfInterestConfirmed=evidence.PoiConfirmed;
-      context.EntryTriggerConfirmed=evidence.TriggerConfirmed;
+      context.EntryTriggerConfirmed=
+         (evidence.TriggerConfirmed && evidence.ReversalContextConfirmed);
       context.StructuralStopPrice=evidence.StructuralStopPrice;
       context.NearestStructuralTargetPrice=evidence.NearestTargetPrice;
 
@@ -233,8 +257,10 @@ public:
          evidence.Reason="Objective observation is valid but M5 POI is not confirmed.";
       else if(!evidence.TriggerConfirmed)
          evidence.Reason="Objective observation is valid but M5 sweep/reclaim trigger is incomplete.";
+      else if(!evidence.ReversalContextConfirmed)
+         evidence.Reason="Objective M5 trigger is valid but reversal context failed.";
       else
-         evidence.Reason="Objective M15/M5 setup evidence projected; Risk approval remains required.";
+         evidence.Reason="Objective M15/M5 reversal-context evidence projected; Risk approval remains required.";
 
       return(true);
      }

@@ -1,0 +1,61 @@
+{
+  "scorecard_input_schema_version": "1.0.0",
+  "experiment_id": "IMP-083",
+  "candidate_id": "current_structural_target_baseline_entry_stop_diagnosed",
+  "candidate_role": "BASELINE",
+  "evidence_date": "2026-07-22",
+  "evidence_hashes": {
+    "request": "97660767EBD11904A4FD554F9811D17E45FD88898537709686F2F331D95566C5",
+    "target_export": "CE6D17AEEC65B78E84789E64FC4C4BA683186FDC43F45E816DFCEC02F817F456",
+    "replay_report": "80D0D66DFBEFAF38A3A8C14C0D874E84CE1874E9B12D595DACD0DEA4E7B85ED1",
+    "augmented_train": "F31E6DED4E0AC3B20FDD7964D3E634902736C8AD3316AA15A4E63D5C3C7E9A7E",
+    "effective_sample_audit": "2646BBD8E881B6BB7F8621E27D1933BE1376711C75558E046B9EA964A1393414",
+    "entry_stop_diagnostic": "D9A2E303E4D509D6833F62198F21747C3AD0068CDD027449A7A8B660419D52FF"
+  },
+  "research_quality": {
+    "hypothesis_preregistered": true,
+    "artifact_hashes_verified": true,
+    "past_only_enforced": true,
+    "validation_sealed": true,
+    "test_sealed": true,
+    "data_quality_coverage_rate": 1.0,
+    "replay_parity_passed": true,
+    "regression_passed": true,
+    "compile_clean": true,
+    "effective_sample_audited": true,
+    "safety_governance_passed": true
+  },
+  "strategy_evidence": {
+    "mature_records": 233,
+    "effective_sample_records": 232,
+    "minimum_effective_sample": 200,
+    "mean_cost_aware_r": -0.07403367643597995,
+    "mean_r_ci95_lower": -0.28369449383878403,
+    "drawdown_gate_passed": false,
+    "positive_chronological_blocks": 1,
+    "chronological_blocks_tested": 4,
+    "positive_directions": 0,
+    "directions_tested": 2,
+    "cost_stress_passed": false,
+    "ranker_required": true,
+    "ranker_passing_folds": 1,
+    "ranker_total_folds": 4,
+    "locked_validation_passed": false,
+    "forward_shadow_passed": false
+  },
+  "operational_safety": {
+    "focused_tests_passed": true,
+    "runtime_compile_clean": true,
+    "regression_passed": true,
+    "safety_locks_valid": true,
+    "broker_state_unchanged": true,
+    "artifact_set_complete": true,
+    "deployment_authorized": false
+  },
+  "notes": [
+    "IMP-083 measured expectancy and Entry/Stop path behavior on the audited 232-record effective Train sample.",
+    "Mean cost-aware R remains negative and the deterministic moving-block 95% interval crosses zero.",
+    "MFE evidence identifies favorable-excursion giveback for later past-only lifecycle replay; no candidate was selected.",
+    "Validation, Test, Forward, Runtime promotion, Live Execution, and Deployment remain unauthorized."
+  ]
+}

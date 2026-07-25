@@ -1,4 +1,4 @@
-"""XAU AI PLATFORM | Offline Test | Version 1.0.0."""
+"""XAU AI PLATFORM | Offline Test | Version 1.1.0."""
 
 from __future__ import annotations
 
@@ -17,17 +17,21 @@ def main() -> None:
         log.write_text(
             "XAUUSD : 2025.11.19 23:59 - all the real ticks discarded within a day\n"
             "XAUUSD : 2026.05.01 23:59 - real ticks absent for 31 minutes\n"
+            "XAUUSD : 2020.02.03 23:59 - no real ticks within a day\n"
+            "XAUUSD : 2020.10.21 23:59 - 4513407 tick prices mismatch for 1379 minute bars\n"
             "XAUUSD : 2021.07.01 00:00 - 2026.06.30 00:00 "
             "real ticks absent for 10 minutes\n",
             encoding="utf-8",
         )
         exclusions.write_text(json.dumps({"excluded_dates": [
+            {"date": "2020-02-03"}, {"date": "2020-10-21"},
             {"date": "2025-11-19"}, {"date": "2026-05-01"}
         ]}), encoding="utf-8")
         report = audit(log, exclusions)
         if not report["all_warned_dates_quarantined"]:
             raise AssertionError("Covered real-tick warning dates were rejected")
         exclusions.write_text(json.dumps({"excluded_dates": [
+            {"date": "2020-02-03"}, {"date": "2020-10-21"},
             {"date": "2025-11-19"}
         ]}), encoding="utf-8")
         report = audit(log, exclusions)

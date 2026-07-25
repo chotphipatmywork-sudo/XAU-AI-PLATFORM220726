@@ -1,0 +1,58 @@
+{
+  "scorecard_input_schema_version": "1.0.0",
+  "experiment_id": "IMP-080",
+  "candidate_id": "current_structural_target_baseline",
+  "candidate_role": "BASELINE",
+  "evidence_date": "2026-07-22",
+  "evidence_hashes": {
+    "request": "97660767EBD11904A4FD554F9811D17E45FD88898537709686F2F331D95566C5",
+    "target_export": "CE6D17AEEC65B78E84789E64FC4C4BA683186FDC43F45E816DFCEC02F817F456",
+    "replay_report": "80D0D66DFBEFAF38A3A8C14C0D874E84CE1874E9B12D595DACD0DEA4E7B85ED1"
+  },
+  "research_quality": {
+    "hypothesis_preregistered": true,
+    "artifact_hashes_verified": true,
+    "past_only_enforced": true,
+    "validation_sealed": true,
+    "test_sealed": true,
+    "data_quality_coverage_rate": 1.0,
+    "replay_parity_passed": true,
+    "regression_passed": true,
+    "compile_clean": true,
+    "effective_sample_audited": false,
+    "safety_governance_passed": true
+  },
+  "strategy_evidence": {
+    "mature_records": 233,
+    "effective_sample_records": null,
+    "minimum_effective_sample": 200,
+    "mean_cost_aware_r": -0.07800778082895857,
+    "mean_r_ci95_lower": null,
+    "drawdown_gate_passed": false,
+    "positive_chronological_blocks": 1,
+    "chronological_blocks_tested": 4,
+    "positive_directions": 0,
+    "directions_tested": 2,
+    "cost_stress_passed": false,
+    "ranker_required": true,
+    "ranker_passing_folds": 1,
+    "ranker_total_folds": 4,
+    "locked_validation_passed": false,
+    "forward_shadow_passed": false
+  },
+  "operational_safety": {
+    "focused_tests_passed": true,
+    "runtime_compile_clean": true,
+    "regression_passed": true,
+    "safety_locks_valid": true,
+    "broker_state_unchanged": true,
+    "artifact_set_complete": true,
+    "deployment_authorized": false
+  },
+  "notes": [
+    "IMP-080 current Target exactly reproduced the frozen 233-record baseline.",
+    "The effective sample, confidence interval, normalized drawdown, and cost stress gates remain open.",
+    "Validation, Test, Forward, Runtime promotion, and Deployment remain unauthorized."
+  ]
+}
+

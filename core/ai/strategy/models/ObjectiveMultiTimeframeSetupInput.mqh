@@ -2,8 +2,8 @@
 //| Project : XAU AI PLATFORM                                        |
 //| File    : ObjectiveMultiTimeframeSetupInput.mqh                  |
 //| Layer   : Core / AI / Strategy / Models                          |
-//| Version : 1.0.0                                                  |
-//| Purpose : Explicit closed-bar M15/M5 setup-adapter input         |
+//| Version : 1.2.0                                                  |
+//| Purpose : Explicit M15 and causal context/trigger M5 input       |
 //+------------------------------------------------------------------+
 
 #ifndef XAU_OBJECTIVE_MTF_INPUT_MQH
@@ -20,6 +20,7 @@ public:
    ENUM_TIMEFRAMES                EntryTimeframe;
    datetime                       ObservationTime;
    datetime                       HigherBarOpenTime;
+   datetime                       ContextBarOpenTime;
    datetime                       EntryBarOpenTime;
    datetime                       HigherTrendKnownTime;
    datetime                       EntryStructureKnownTime;
@@ -27,6 +28,10 @@ public:
    CTrendResult                   HigherTrend;
    CConfirmedSwingStructureResult EntryStructure;
 
+   double                         ContextOpen;
+   double                         ContextHigh;
+   double                         ContextLow;
+   double                         ContextClose;
    double                         EntryOpen;
    double                         EntryHigh;
    double                         EntryLow;
@@ -48,6 +53,7 @@ public:
       EntryTimeframe=PERIOD_CURRENT;
       ObservationTime=0;
       HigherBarOpenTime=0;
+      ContextBarOpenTime=0;
       EntryBarOpenTime=0;
       HigherTrendKnownTime=0;
       EntryStructureKnownTime=0;
@@ -55,6 +61,10 @@ public:
       HigherTrend.Reset();
       EntryStructure.Reset();
 
+      ContextOpen=0.0;
+      ContextHigh=0.0;
+      ContextLow=0.0;
+      ContextClose=0.0;
       EntryOpen=0.0;
       EntryHigh=0.0;
       EntryLow=0.0;

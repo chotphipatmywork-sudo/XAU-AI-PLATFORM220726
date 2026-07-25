@@ -25,7 +25,7 @@ MINIMUM_TRAINABLE_ROWS = 200
 MINIMUM_TARGET_ROWS = 40
 MINIMUM_NON_TARGET_ROWS = 40
 
-SETUP_AUDIT_COLUMNS = (
+SETUP_AUDIT_COLUMNS_V1 = (
     "recorded_at", "observation_time", "symbol", "higher_bar_open",
     "entry_bar_open", "direction", "poi_confirmed", "trigger_confirmed",
     "reference_poi", "nearest_target", "structural_stop",
@@ -35,6 +35,30 @@ SETUP_AUDIT_COLUMNS = (
     "risk_valid", "risk_allowed", "risk_message", "execution_success",
     "execution_message", "synthetic_ticket",
 )
+SETUP_AUDIT_COLUMNS_V2 = (
+    "recorded_at", "observation_time", "symbol", "higher_bar_open",
+    "entry_bar_open", "confirmation_bar_open", "direction", "poi_confirmed",
+    "trigger_confirmed", "continuation_confirmed", "reference_poi",
+    "nearest_target", "structural_stop", "sweep_penetration_atr",
+    "reclaim_distance_atr", "confirmation_extension_atr", "plan_available",
+    "plan_entry", "plan_stop", "plan_target", "plan_rr", "minimum_rr",
+    "estimated_cost_points", "setup_reason", "ai_action", "ai_confidence",
+    "risk_valid", "risk_allowed", "risk_message", "execution_success",
+    "execution_message", "synthetic_ticket",
+)
+SETUP_AUDIT_COLUMNS_V3 = (
+    "recorded_at", "observation_time", "symbol", "higher_bar_open",
+    "context_bar_open", "entry_bar_open", "direction", "poi_confirmed",
+    "trigger_confirmed", "reversal_context_confirmed", "reference_poi",
+    "nearest_target", "structural_stop", "sweep_penetration_atr",
+    "reclaim_distance_atr", "trigger_engulfment_atr", "plan_available",
+    "plan_entry", "plan_stop", "plan_target", "plan_rr", "minimum_rr",
+    "estimated_cost_points", "setup_reason", "ai_action", "ai_confidence",
+    "risk_valid", "risk_allowed", "risk_message", "execution_success",
+    "execution_message", "synthetic_ticket",
+)
+# Backward-compatible alias used by the preserved V1 fixtures and artifacts.
+SETUP_AUDIT_COLUMNS = SETUP_AUDIT_COLUMNS_V1
 
 OUTCOME_AUDIT_COLUMNS = (
     "setup_outcome_schema_version", "feature_schema_version",
@@ -111,6 +135,26 @@ def read_exact_csv(path: Path, columns: tuple[str, ...]) -> list[dict[str, str]]
     if not rows:
         raise ValueError(f"Stage D source artifact is empty: {path}")
     return rows
+
+
+def read_setup_audit_csv(path: Path) -> tuple[list[dict[str, str]], str]:
+    if not path.exists():
+        raise FileNotFoundError(f"Stage D source artifact not found: {path}")
+    with path.open("r", encoding="utf-8-sig", newline="") as handle:
+        reader = csv.DictReader(handle)
+        fields = tuple(reader.fieldnames or ())
+        if fields == SETUP_AUDIT_COLUMNS_V1:
+            version = "1.0.0"
+        elif fields == SETUP_AUDIT_COLUMNS_V2:
+            version = "2.0.0"
+        elif fields == SETUP_AUDIT_COLUMNS_V3:
+            version = "3.0.0"
+        else:
+            raise ValueError(f"Unexpected Stage D Setup Audit schema in {path}")
+        rows = list(reader)
+    if not rows:
+        raise ValueError(f"Stage D source artifact is empty: {path}")
+    return rows, version
 
 
 def validate_decisions(
@@ -286,7 +330,7 @@ def build_dataset(
     if not math.isfinite(point_size) or point_size <= 0.0:
         raise ValueError("Stage D point size must be positive and finite")
 
-    setup_rows = read_exact_csv(setup_audit_path, SETUP_AUDIT_COLUMNS)
+    setup_rows, setup_audit_schema_version = read_setup_audit_csv(setup_audit_path)
     decision_rows = read_exact_csv(decisions_path, DECISION_COLUMNS)
     decision_index, bar_rows = validate_decisions(decision_rows)
     bar_times = [row["time"] for row in bar_rows]
@@ -296,6 +340,50 @@ def build_dataset(
     source_quality_exclusions: list[dict[str, Any]] = []
     for setup in setup_rows:
         observation = parse_time(setup["observation_time"])
+        if setup_audit_schema_version == "2.0.0":
+            trigger_open = parse_time(setup["entry_bar_open"])
+            confirmation_open = parse_time(setup["confirmation_bar_open"])
+            if (trigger_open + timedelta(minutes=10) != observation
+                    or confirmation_open + timedelta(minutes=5) != observation
+                    or trigger_open + timedelta(minutes=5) != confirmation_open):
+                raise ValueError("CR-016 Setup Audit contains invalid two-bar timing")
+            trigger_confirmed = as_bool(setup["trigger_confirmed"])
+            continuation_confirmed = as_bool(setup["continuation_confirmed"])
+            confirmation_extension = finite_float(
+                setup["confirmation_extension_atr"],
+                "confirmation_extension_atr",
+            )
+            if confirmation_extension < 0.0:
+                raise ValueError("CR-016 confirmation extension is negative")
+            if continuation_confirmed and not trigger_confirmed:
+                raise ValueError("CR-016 continuation bypassed its trigger")
+            if as_bool(setup["plan_available"]) and (
+                not trigger_confirmed or not continuation_confirmed
+            ):
+                raise ValueError("CR-016 plan bypassed trigger confirmation")
+        elif setup_audit_schema_version == "3.0.0":
+            context_open = parse_time(setup["context_bar_open"])
+            trigger_open = parse_time(setup["entry_bar_open"])
+            if (context_open + timedelta(minutes=10) != observation
+                    or trigger_open + timedelta(minutes=5) != observation
+                    or context_open + timedelta(minutes=5) != trigger_open):
+                raise ValueError("CR-017 Setup Audit contains invalid two-bar timing")
+            trigger_confirmed = as_bool(setup["trigger_confirmed"])
+            reversal_context_confirmed = as_bool(
+                setup["reversal_context_confirmed"]
+            )
+            trigger_engulfment = finite_float(
+                setup["trigger_engulfment_atr"],
+                "trigger_engulfment_atr",
+            )
+            if trigger_engulfment < 0.0:
+                raise ValueError("CR-017 trigger engulfment is negative")
+            if reversal_context_confirmed and not trigger_confirmed:
+                raise ValueError("CR-017 reversal context bypassed its trigger")
+            if as_bool(setup["plan_available"]) and (
+                not trigger_confirmed or not reversal_context_confirmed
+            ):
+                raise ValueError("CR-017 plan bypassed reversal context")
         if observation in setup_observations:
             raise ValueError(f"Duplicate Objective Setup observation: {setup['observation_time']}")
         setup_observations.add(observation)
@@ -373,6 +461,7 @@ def build_dataset(
     summary = {
         "dataset_stage": "stage_d_setup_outcome_build_only",
         "setup_outcome_schema_version": SETUP_OUTCOME_SCHEMA_VERSION,
+        "setup_audit_schema_version": setup_audit_schema_version,
         "feature_schema_version": FEATURE_SCHEMA_VERSION,
         "directional_label_schema_changed": False,
         "training_performed": False,

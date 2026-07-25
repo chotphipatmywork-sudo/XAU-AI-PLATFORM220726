@@ -1,4 +1,4 @@
-"""XAU AI PLATFORM | Offline Audit | Version 1.0.0.
+"""XAU AI PLATFORM | Offline Audit | Version 1.1.0.
 
 Verify that every date warned by an MT5 real-tick log is quarantined.
 """
@@ -13,7 +13,12 @@ from pathlib import Path
 
 WARNING_PATTERN = re.compile(
     r"XAUUSD\s*:\s*(\d{4}\.\d{2}\.\d{2})\s+\d{2}:\d{2}\s+-\s+"
-    r"(?:real ticks (?:absent|discarded|mismatched)|all the real ticks discarded)",
+    r"(?:"
+    r"real ticks (?:absent|discarded|mismatched)"
+    r"|all the real ticks discarded"
+    r"|no real ticks within a day"
+    r"|\d+ tick prices mismatch"
+    r")",
     re.IGNORECASE,
 )
 

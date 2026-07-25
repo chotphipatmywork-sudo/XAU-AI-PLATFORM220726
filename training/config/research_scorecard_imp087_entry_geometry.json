@@ -1,0 +1,61 @@
+{
+  "scorecard_input_schema_version": "1.0.0",
+  "experiment_id": "IMP-087",
+  "candidate_id": "current_baseline_entry_geometry_diagnosed",
+  "candidate_role": "BASELINE",
+  "evidence_date": "2026-07-23",
+  "evidence_hashes": {
+    "augmented_effective_train": "F31E6DED4E0AC3B20FDD7964D3E634902736C8AD3316AA15A4E63D5C3C7E9A7E",
+    "effective_sample_audit": "2646BBD8E881B6BB7F8621E27D1933BE1376711C75558E046B9EA964A1393414",
+    "pretrain_setup_audit": "A406B7EDADA6CACB5691487341294E5F950FF262D1CE8AE26EF958843338B8B8",
+    "main_setup_audit": "A8463D7F118CB52A7B514099FF8B8839F3C2401ECA5A66F50376C4D87C1C9F7A",
+    "canonical_setup_response_attribution": "A281F29D0CD25E9DCE894BF03F486BA6F7426014DF4F1BFD31DFA29BAA0DBC27",
+    "entry_geometry_outcome_attribution": "40B1A1D46F7C20A960C22AD60FC4B4FEF612DAAA569BCDBE823AACB5FA60E039"
+  },
+  "research_quality": {
+    "hypothesis_preregistered": true,
+    "artifact_hashes_verified": true,
+    "past_only_enforced": true,
+    "validation_sealed": true,
+    "test_sealed": true,
+    "data_quality_coverage_rate": 1.0,
+    "replay_parity_passed": true,
+    "regression_passed": true,
+    "compile_clean": true,
+    "effective_sample_audited": true,
+    "safety_governance_passed": true
+  },
+  "strategy_evidence": {
+    "mature_records": 232,
+    "effective_sample_records": 232,
+    "minimum_effective_sample": 200,
+    "mean_cost_aware_r": -0.07403367643597994,
+    "mean_r_ci95_lower": -0.283694493838784,
+    "drawdown_gate_passed": false,
+    "positive_chronological_blocks": 1,
+    "chronological_blocks_tested": 4,
+    "positive_directions": 0,
+    "directions_tested": 2,
+    "cost_stress_passed": false,
+    "ranker_required": true,
+    "ranker_passing_folds": 1,
+    "ranker_total_folds": 4,
+    "locked_validation_passed": false,
+    "forward_shadow_passed": false
+  },
+  "operational_safety": {
+    "focused_tests_passed": true,
+    "runtime_compile_clean": true,
+    "regression_passed": true,
+    "safety_locks_valid": true,
+    "broker_state_unchanged": true,
+    "artifact_set_complete": true,
+    "deployment_authorized": false
+  },
+  "notes": [
+    "IMP-087 strictly joined 232 effective accepted plans to their existing past-only Setup geometry without changing Feature Schema, Runtime, or Risk.",
+    "No Trigger Shape, Entry/Invalidation, or Payoff Geometry view passed the pre-registered gate; TARGET_FIRST recall was at most 0.029 for eligible views.",
+    "The existing V1 geometry snapshot cannot justify a reclaim, POI, cost, or RR threshold and no confirmation hypothesis was selected.",
+    "Strategy scores remain unchanged; Validation, Test, Forward, Runtime promotion, Live Execution, and Deployment remain unauthorized."
+  ]
+}

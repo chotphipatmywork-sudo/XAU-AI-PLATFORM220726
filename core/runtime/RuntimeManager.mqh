@@ -2,8 +2,8 @@
 //| Project : XAU AI PLATFORM                                        |
 //| File    : RuntimeManager.mqh                                     |
 //| Layer   : Core / Runtime                                         |
-//| Version : 5.6.0                                                  |
-//| Purpose : Canonical Runtime Pipeline Orchestrator                |
+//| Version : 5.8.0                                                  |
+//| Purpose : Canonical Runtime with CR-017 causal reversal context  |
 //+------------------------------------------------------------------+
 
 #ifndef CORE_RUNTIME_RUNTIMEMANAGER_MQH
@@ -137,9 +137,16 @@ private:
          m_lastClosedBar+PeriodSeconds(PERIOD_M15);
       const datetime entryBarOpen=
          observationTime-PeriodSeconds(PERIOD_M5);
+      const datetime contextBarOpen=
+         entryBarOpen-PeriodSeconds(PERIOD_M5);
       const int entryShift=
          iBarShift(m_symbol,PERIOD_M5,entryBarOpen,true);
-      if(entryShift<1 || iTime(m_symbol,PERIOD_M5,entryShift)!=entryBarOpen)
+      const int contextShift=
+         iBarShift(m_symbol,PERIOD_M5,contextBarOpen,true);
+      if(entryShift<1 || contextShift<2 ||
+         iTime(m_symbol,PERIOD_M5,entryShift)!=entryBarOpen ||
+         iTime(m_symbol,PERIOD_M5,contextShift)!=contextBarOpen ||
+         contextShift!=entryShift+1)
          return(false);
 
       CBrainPipelineResult entryBrain=
@@ -165,11 +172,16 @@ private:
       source.EntryTimeframe=PERIOD_M5;
       source.ObservationTime=observationTime;
       source.HigherBarOpenTime=m_lastClosedBar;
+      source.ContextBarOpenTime=contextBarOpen;
       source.EntryBarOpenTime=entryBarOpen;
       source.HigherTrendKnownTime=observationTime;
       source.EntryStructureKnownTime=observationTime;
       source.SetHigherTrend(higherBrain.Analysis.Trend);
       source.SetEntryStructure(swingStructure);
+      source.ContextOpen=iOpen(m_symbol,PERIOD_M5,contextShift);
+      source.ContextHigh=iHigh(m_symbol,PERIOD_M5,contextShift);
+      source.ContextLow=iLow(m_symbol,PERIOD_M5,contextShift);
+      source.ContextClose=iClose(m_symbol,PERIOD_M5,contextShift);
       source.EntryOpen=iOpen(m_symbol,PERIOD_M5,entryShift);
       source.EntryHigh=iHigh(m_symbol,PERIOD_M5,entryShift);
       source.EntryLow=iLow(m_symbol,PERIOD_M5,entryShift);

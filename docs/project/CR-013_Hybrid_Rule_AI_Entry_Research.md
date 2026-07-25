@@ -1,10 +1,10 @@
 # CR-013 Hybrid Rule and AI Entry Research
 
-Version: 2.5.0
+Version: 2.9.0
 
 Date: 2026-07-19
 
-Status: Minimum-reclaim contract implemented; fresh evidence required
+Status: Train-only structural Target bottleneck confirmed; no Runtime candidate
 
 Architecture Baseline: ABR-1.0
 
@@ -428,6 +428,17 @@ needs restoration because Stage A does not modify them.
 
 Each later stage requires its documented evidence gate before it can affect the
 next boundary.
+
+IMP-080 completed the required Train-only past-only structural Target replay.
+All seven current/M5/M15 Target candidates failed the frozen sample,
+expectancy, or chronological-stability gates. Target distance alone is
+rejected as the next Runtime change; no new CR, Validation/Test selection,
+Forward test, or Deployment was authorized.
+
+RSCS-1.0 is mandatory from IMP-081 onward. Each bounded experiment must retain
+separate Baseline and Candidate scorecards, reference deltas, and G0-G8 status.
+A rejected Candidate may close a research question but cannot replace or lower
+the accepted Baseline merely to keep an artificial monotonic score history.
 
 The question, data, calculation, ownership, and future-leakage design is recorded
 in `HYBRID_PROFESSIONAL_TRADING_QUESTION_CATALOG.md`. The catalog identifies

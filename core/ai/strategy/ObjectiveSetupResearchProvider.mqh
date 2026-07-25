@@ -2,8 +2,8 @@
 //| Project : XAU AI PLATFORM                                        |
 //| File    : ObjectiveSetupResearchProvider.mqh                    |
 //| Layer   : Core / AI / Strategy                                  |
-//| Version : 1.0.0                                                  |
-//| Purpose : Tester-only Objective Setup decision and plan provider |
+//| Version : 1.2.0                                                  |
+//| Purpose : Tester-only CR-017 reversal-context provider           |
 //+------------------------------------------------------------------+
 
 #ifndef XAU_OBJECTIVE_SETUP_PROVIDER_MQH
@@ -114,7 +114,7 @@ public:
       decision.EntryPrice=plan.EntryPrice;
       decision.StopLoss=plan.StopLossPrice;
       decision.TakeProfit=plan.TakeProfitPrice;
-      decision.Reason="CR-013 tester-only objective structural Trade Plan";
+      decision.Reason="CR-017 tester-only reversal-context structural Trade Plan";
       planAvailable=true;
       reason=plan.Reason;
       return(true);
