@@ -1,0 +1,60 @@
+{
+  "scorecard_input_schema_version": "1.0.0",
+  "experiment_id": "IMP-097",
+  "candidate_id": "imp089_current_feed_baseline_rr_root_cause_audited",
+  "candidate_role": "BASELINE",
+  "evidence_date": "2026-07-26",
+  "evidence_hashes": {
+    "imp096_request": "E454343B9AF390ADB8860DEB317A126403F277818B1DA9D387E5DAAD6A7A9D5C",
+    "imp096_path_export": "E843A2ED86F21857ADD11FDFCE989E02E148715F952432811AE71A8D0A9C93F6",
+    "imp097_root_cause": "403AB570A756A9C6F708BDB7B62E4A56644D138AAC675ED72FCD10E73191000C",
+    "imp097_detail_records": "AB32EC7B6212DBD78169DB9339B666CA3A6076381B2152D827E272AF1805B83D"
+  },
+  "research_quality": {
+    "hypothesis_preregistered": true,
+    "artifact_hashes_verified": true,
+    "past_only_enforced": true,
+    "validation_sealed": true,
+    "test_sealed": true,
+    "data_quality_coverage_rate": 1.0,
+    "replay_parity_passed": true,
+    "regression_passed": true,
+    "compile_clean": true,
+    "effective_sample_audited": true,
+    "safety_governance_passed": true
+  },
+  "strategy_evidence": {
+    "mature_records": 31,
+    "effective_sample_records": 31,
+    "minimum_effective_sample": 200,
+    "mean_cost_aware_r": -0.11967599520045,
+    "mean_r_ci95_lower": null,
+    "drawdown_gate_passed": false,
+    "positive_chronological_blocks": 2,
+    "chronological_blocks_tested": 4,
+    "positive_directions": 1,
+    "directions_tested": 2,
+    "cost_stress_passed": false,
+    "ranker_required": false,
+    "ranker_passing_folds": 0,
+    "ranker_total_folds": 0,
+    "locked_validation_passed": false,
+    "forward_shadow_passed": false
+  },
+  "operational_safety": {
+    "focused_tests_passed": true,
+    "runtime_compile_clean": true,
+    "regression_passed": true,
+    "safety_locks_valid": true,
+    "broker_state_unchanged": true,
+    "artifact_set_complete": true,
+    "deployment_authorized": false
+  },
+  "notes": [
+    "IMP-097 attributes the frozen IMP-096 Minimum-RR rejection population without changing Entry, Stop, Target, cost, or the 2.0R gate.",
+    "The accepted formal current-feed Baseline remains IMP-089; IMP-097 creates no Candidate and does not replace Baseline strategy evidence.",
+    "Of 383 Minimum-RR rejections, 310 are raw structural RR failures and 73 are cost erosion below 2.0R.",
+    "Only the fixed 18:00-23:59 time group is significant after Bonferroni correction; it is a research hypothesis, not a trading filter.",
+    "Runtime, Risk, Execution, Validation, Test, Forward, Live Execution, and Deployment remain unchanged and unauthorized."
+  ]
+}
