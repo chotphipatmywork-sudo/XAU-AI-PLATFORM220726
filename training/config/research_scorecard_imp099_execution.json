@@ -1,0 +1,62 @@
+{
+  "scorecard_input_schema_version": "1.0.0",
+  "experiment_id": "IMP-099-EXECUTION",
+  "candidate_id": "imp099_locked_four_arm_train_only_evidence",
+  "candidate_role": "BASELINE",
+  "evidence_date": "2026-07-26",
+  "evidence_hashes": {
+    "imp099_preregistration": "E0A9B1F5D342C2527AC929557CFCB961E9C8BF71B4193A20234AE252A33F17FA",
+    "raw_experiment_records": "800CB623DF9FB94CA798BA3D5691A8F8779753161FE1EE6E24FD37C0D4938B8A",
+    "experiment_metrics": "4365D7D09B1489DE8E07B0DBCF0AFC1DD5BEF9E99F301D4E81A7D7AA83AFBFE9",
+    "validation_results": "88E097013DA1C735D7A0621AF576505DC38DD498653A50A808E4ECD266D55B01",
+    "gate_result": "C5D4EE3BD3E8BDE5A05F4672AFAB7BE94C7224E162973560D1D543AA6FFE39F1"
+  },
+  "research_quality": {
+    "hypothesis_preregistered": true,
+    "artifact_hashes_verified": true,
+    "past_only_enforced": true,
+    "validation_sealed": true,
+    "test_sealed": true,
+    "data_quality_coverage_rate": 1.0,
+    "replay_parity_passed": true,
+    "regression_passed": true,
+    "compile_clean": true,
+    "effective_sample_audited": true,
+    "safety_governance_passed": true
+  },
+  "strategy_evidence": {
+    "mature_records": 31,
+    "effective_sample_records": 31,
+    "minimum_effective_sample": 200,
+    "mean_cost_aware_r": -0.11967599520045,
+    "mean_r_ci95_lower": null,
+    "drawdown_gate_passed": false,
+    "positive_chronological_blocks": 2,
+    "chronological_blocks_tested": 4,
+    "positive_directions": 1,
+    "directions_tested": 2,
+    "cost_stress_passed": false,
+    "ranker_required": false,
+    "ranker_passing_folds": 0,
+    "ranker_total_folds": 0,
+    "locked_validation_passed": false,
+    "forward_shadow_passed": false
+  },
+  "operational_safety": {
+    "focused_tests_passed": true,
+    "runtime_compile_clean": true,
+    "regression_passed": true,
+    "safety_locks_valid": true,
+    "broker_state_unchanged": true,
+    "artifact_set_complete": true,
+    "deployment_authorized": false
+  },
+  "notes": [
+    "Exactly four preregistered arms executed on Train-only evidence.",
+    "Common support contains 362 paired records.",
+    "CONTROL, STOP_ONLY, TARGET_ONLY, and COMBINED eligibility is reported without imputation.",
+    "All three planned contrasts passed the locked Train-only experiment gate.",
+    "The gate decision is GO_TRAIN_ONLY_REPLAY and does not create a Runtime candidate.",
+    "Validation, Test, Runtime, Protected Modules, and deployment remain unchanged."
+  ]
+}
