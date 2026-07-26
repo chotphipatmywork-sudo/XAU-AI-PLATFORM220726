@@ -1,0 +1,128 @@
+{
+  "contract_schema_version": "1.0.0",
+  "experiment_id": "IMP-100",
+  "phase": "CONTRACT_AND_REQUEST_PREPARATION",
+  "baseline_commit": "32e044c86691b9e84f8fa54d21e3d20448f27eeb",
+  "architecture_baseline": "ABR-1.0_FROZEN",
+  "dataset_partition": "TRAIN_ONLY",
+  "train_end_exclusive": "2024.07.01 00:00",
+  "frozen_inputs": {
+    "imp099_preregistration": {
+      "path": "training/config/imp099_geometry_component_experiment_preregistration.json",
+      "sha256": "E0A9B1F5D342C2527AC929557CFCB961E9C8BF71B4193A20234AE252A33F17FA"
+    },
+    "imp099_raw_experiment_records": {
+      "path": "training/output/imp099_geometry_component_experiment/raw_experiment_records.csv",
+      "sha256": "800CB623DF9FB94CA798BA3D5691A8F8779753161FE1EE6E24FD37C0D4938B8A"
+    },
+    "imp099_experiment_metrics": {
+      "path": "training/output/imp099_geometry_component_experiment/experiment_metrics.json",
+      "sha256": "4365D7D09B1489DE8E07B0DBCF0AFC1DD5BEF9E99F301D4E81A7D7AA83AFBFE9"
+    },
+    "imp099_validation_results": {
+      "path": "training/output/imp099_geometry_component_experiment/validation_results.json",
+      "sha256": "88E097013DA1C735D7A0621AF576505DC38DD498653A50A808E4ECD266D55B01"
+    },
+    "imp099_gate_result": {
+      "path": "training/output/imp099_geometry_component_experiment/gate_result.json",
+      "sha256": "C5D4EE3BD3E8BDE5A05F4672AFAB7BE94C7224E162973560D1D543AA6FFE39F1"
+    },
+    "imp099_execution_scorecard": {
+      "path": "training/output/research_scorecard_imp099_execution/research_scorecard.json",
+      "sha256": "9D95D7514ECB9D72AB7B61D70E7DEA37FF4426D5C9C9FBE95CD3227936421821"
+    }
+  },
+  "verified_imp099_accounting": {
+    "base_opportunities": 597,
+    "arm_records": 2388,
+    "common_support_opportunities": 362,
+    "control_eligible": 459,
+    "control_rr_passes": 76,
+    "final_gate": "GO_TRAIN_ONLY_REPLAY"
+  },
+  "arms": [
+    {
+      "arm_id": "CONTROL",
+      "stop_identity": "m5_stop_2",
+      "target_identity": "m15_target_1",
+      "rr_passing_requests": 76
+    },
+    {
+      "arm_id": "STOP_ONLY",
+      "stop_identity": "m5_stop_1",
+      "target_identity": "m15_target_1",
+      "rr_passing_requests": 195
+    },
+    {
+      "arm_id": "TARGET_ONLY",
+      "stop_identity": "m5_stop_2",
+      "target_identity": "m15_target_2",
+      "rr_passing_requests": 146
+    },
+    {
+      "arm_id": "COMBINED",
+      "stop_identity": "m5_stop_1",
+      "target_identity": "m15_target_2",
+      "rr_passing_requests": 268
+    }
+  ],
+  "replay_rules": {
+    "entry_policy": "ORIGINAL_ENTRY_UNCHANGED",
+    "minimum_rr": 2.0,
+    "cost_formula": "IMP-095_FROZEN_COST_ADJUSTED_RR",
+    "path_timeframe": "PERIOD_M5",
+    "path_timing": "CAUSAL_CLOSED_M5_ONLY",
+    "lifecycle_semantics": "IMP-092_AND_IMP-096_EXISTING",
+    "maximum_path_m5_bars": 192,
+    "primary_population": "COMMON_SUPPORT_362",
+    "secondary_population": "ALL_597_BASE_OPPORTUNITIES",
+    "comparison": "PAIRED_REQUEST_LEVEL",
+    "request_identity": "IMP100__ARM__BASE_OPPORTUNITY",
+    "no_trade_accounting": "RETAIN_AS_ZERO_FOR_LATER_PAIRED_REPLAY",
+    "collision_policy": "AMBIGUOUS_QUARANTINE",
+    "ambiguous_ordering": "QUARANTINE",
+    "unresolved_outcome": "ACCOUNT_SEPARATELY",
+    "outcome_imputation_allowed": false,
+    "missing_geometry_imputation_allowed": false,
+    "train_cutoff_enforced": true,
+    "validation_dataset_used": false,
+    "test_dataset_used": false
+  },
+  "request_outputs": {
+    "active_request_schema_version": "1.0.0",
+    "opportunity_ledger_schema_version": "1.0.0",
+    "active_requests_expected": 685,
+    "opportunity_ledger_records_expected": 2388,
+    "active_requests_only_when_rr_passes": true,
+    "replay_outcome_fields_allowed": false
+  },
+  "strategy_gates": {
+    "minimum_effective_paths": 200,
+    "mean_realized_r_positive": true,
+    "moving_block_ci95_lower_positive": true,
+    "all_four_chronological_blocks_positive": true,
+    "both_directions_positive": true,
+    "profit_factor_minimum": 1.1,
+    "maximum_drawdown_r_maximum": 25.0,
+    "longest_loss_sequence_maximum": 10,
+    "cost_multipliers": [1.0, 1.25, 1.5],
+    "all_cost_stress_intervals_positive": true
+  },
+  "prohibitions": {
+    "compile_exporter": true,
+    "export_m5_paths": true,
+    "calculate_realized_outcomes": true,
+    "calculate_expectancy": true,
+    "select_preferred_arm": true,
+    "optimize_parameters": true,
+    "modify_minimum_rr": true,
+    "add_filter": true,
+    "modify_runtime": true,
+    "modify_risk": true,
+    "modify_execution": true,
+    "modify_protected_modules": true,
+    "enable_validation_or_test": true,
+    "create_runtime_candidate": true,
+    "authorize_deployment": true
+  }
+}

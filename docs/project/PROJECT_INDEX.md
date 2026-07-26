@@ -320,3 +320,4 @@ Version Date    Change Description
 - [IMP-097 Current-Feed RR Rejection Root Cause](../architecture/implementation/IMP-097_Current_Feed_RR_Rejection_Root_Cause.md)
 - [IMP-098 Structural Stop-to-Target Imbalance Root Cause](../architecture/implementation/IMP-098_Structural_Stop_Target_Imbalance_Root_Cause.md)
 - [IMP-099 Train-only Geometry Component Experiment Preregistration](../architecture/implementation/IMP-099_Train_Only_Geometry_Component_Experiment_Preregistration.md)
+- [IMP-100 Train-only Geometry Causal Replay](../architecture/implementation/IMP-100_Train_Only_Geometry_Causal_Replay.md)
