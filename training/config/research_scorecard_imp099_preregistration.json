@@ -1,0 +1,59 @@
+{
+  "scorecard_input_schema_version": "1.0.0",
+  "experiment_id": "IMP-099",
+  "candidate_id": "imp099_geometry_component_experiment_preregistered",
+  "candidate_role": "BASELINE",
+  "evidence_date": "2026-07-26",
+  "evidence_hashes": {
+    "imp098_root_cause": "873BCD413B07C7CD6D80B5728DC9152808D51751A4F1DB3D21167FAD37C8CE47",
+    "imp099_preregistration": "E0A9B1F5D342C2527AC929557CFCB961E9C8BF71B4193A20234AE252A33F17FA",
+    "imp099_validation": "EB7F71346DEE3720A3681AB41DC40453082865B128D7CDD39707B1684CAF7EA3"
+  },
+  "research_quality": {
+    "hypothesis_preregistered": true,
+    "artifact_hashes_verified": true,
+    "past_only_enforced": true,
+    "validation_sealed": true,
+    "test_sealed": true,
+    "data_quality_coverage_rate": 1.0,
+    "replay_parity_passed": true,
+    "regression_passed": true,
+    "compile_clean": true,
+    "effective_sample_audited": true,
+    "safety_governance_passed": true
+  },
+  "strategy_evidence": {
+    "mature_records": 31,
+    "effective_sample_records": 31,
+    "minimum_effective_sample": 200,
+    "mean_cost_aware_r": -0.11967599520045,
+    "mean_r_ci95_lower": null,
+    "drawdown_gate_passed": false,
+    "positive_chronological_blocks": 2,
+    "chronological_blocks_tested": 4,
+    "positive_directions": 1,
+    "directions_tested": 2,
+    "cost_stress_passed": false,
+    "ranker_required": false,
+    "ranker_passing_folds": 0,
+    "ranker_total_folds": 0,
+    "locked_validation_passed": false,
+    "forward_shadow_passed": false
+  },
+  "operational_safety": {
+    "focused_tests_passed": true,
+    "runtime_compile_clean": true,
+    "regression_passed": true,
+    "safety_locks_valid": true,
+    "broker_state_unchanged": true,
+    "artifact_set_complete": true,
+    "deployment_authorized": false
+  },
+  "notes": [
+    "IMP-099 is a design-only preregistration; the Train-only experiment has not executed.",
+    "Four fixed 2x2 arms isolate Stop depth and Target availability without parameter search.",
+    "Primary analysis uses common support; all 597 requests are retained for coverage accounting.",
+    "Three primary paired contrasts use Bonferroni alpha 0.016666666666666666.",
+    "Validation, Test, Runtime, Protected Modules, production thresholds, and deployment remain unchanged."
+  ]
+}

@@ -1,0 +1,131 @@
+{
+  "preregistration_schema_version": "1.0.0",
+  "experiment_id": "IMP-099",
+  "title": "Train-only Structural Geometry Component Experiment",
+  "baseline_commit": "1a2dc715bd118dd607659162dafdd8640112b7cc",
+  "architecture_baseline": "ABR-1.0_FROZEN",
+  "scope": "DESIGN_ONLY_NOT_EXECUTED",
+  "population": {
+    "partition": "TRAIN_ONLY",
+    "request_records": 597,
+    "imp097_rr_evaluable_records": 459,
+    "validation_dataset_used": false,
+    "test_dataset_used": false
+  },
+  "frozen_sources": {
+    "imp098_root_cause": {
+      "path": "training/output/current_feed_xauusd_real_ticks_202001_202606/research/structural_stop_target_imbalance/structural_stop_target_imbalance_root_cause.json",
+      "sha256": "873BCD413B07C7CD6D80B5728DC9152808D51751A4F1DB3D21167FAD37C8CE47"
+    },
+    "imp098_detail_records": {
+      "path": "training/output/current_feed_xauusd_real_ticks_202001_202606/research/structural_stop_target_imbalance/structural_stop_target_imbalance_records.csv",
+      "sha256": "BBF932A3DCB7789E8AFCA157E467CF6DF3905789543D67BCB334E2FC5813EF86"
+    },
+    "stop_ladder": {
+      "path": "training/output/current_feed_xauusd_real_ticks_202001_202606/research/current_feed_stop_ladder/XAU_AI_CURRENT_FEED_STOP_LADDERS.csv",
+      "sha256": "FB6E0073BDF0FD89E4B09324B6C092F0812DBA7D243608063B61E4F167627C75"
+    },
+    "target_ladder": {
+      "path": "training/output/current_feed_xauusd_real_ticks_202001_202606/research/current_feed_target_ladder/XAU_AI_CURRENT_FEED_TARGET_LADDERS.csv",
+      "sha256": "E930FFEEB5AF464DBCFD7FFD531D264AA9ED7D326CDAAD07ED2487CC72E7E2FA"
+    }
+  },
+  "frozen_policy": {
+    "minimum_rr": 2.0,
+    "cost_formula": "IMP-095_FROZEN_COST_ADJUSTED_RR",
+    "entry": "EXPECTED_ENTRY_UNCHANGED",
+    "parameter_optimization_allowed": false,
+    "session_filter_allowed": false
+  },
+  "factorial_design": {
+    "stop_factor": ["m5_stop_2", "m5_stop_1"],
+    "target_factor": ["m15_target_1", "m15_target_2"],
+    "arms": [
+      {
+        "arm_id": "CONTROL",
+        "stop": "m5_stop_2",
+        "target": "m15_target_1"
+      },
+      {
+        "arm_id": "STOP_ONLY",
+        "stop": "m5_stop_1",
+        "target": "m15_target_1"
+      },
+      {
+        "arm_id": "TARGET_ONLY",
+        "stop": "m5_stop_2",
+        "target": "m15_target_2"
+      },
+      {
+        "arm_id": "COMBINED",
+        "stop": "m5_stop_1",
+        "target": "m15_target_2"
+      }
+    ]
+  },
+  "hypotheses": [
+    {
+      "id": "H1_STOP_DEPTH",
+      "contrast": "STOP_ONLY_MINUS_CONTROL",
+      "direction": "GREATER_RR_PASS_RATE",
+      "mechanism": "REDUCED_INVALIDATION_DISTANCE"
+    },
+    {
+      "id": "H2_TARGET_AVAILABILITY",
+      "contrast": "TARGET_ONLY_MINUS_CONTROL",
+      "direction": "GREATER_RR_PASS_RATE",
+      "mechanism": "INCREASED_AVAILABLE_TARGET_DISTANCE"
+    },
+    {
+      "id": "H3_COMBINED",
+      "contrast": "COMBINED_MINUS_CONTROL",
+      "direction": "GREATER_RR_PASS_RATE",
+      "mechanism": "REDUCED_STOP_AND_INCREASED_TARGET_DISTANCE"
+    }
+  ],
+  "analysis_contract": {
+    "primary_population": "COMMON_SUPPORT_ALL_FOUR_ARMS",
+    "secondary_population": "INTENTION_TO_ANALYZE_ALL_597_REQUESTS",
+    "primary_metric": "COST_ADJUSTED_RR_PASS_RATE_AT_2R",
+    "secondary_metrics": [
+      "STRUCTURAL_VALIDITY_RATE",
+      "GEOMETRY_COVERAGE_RATE",
+      "MEDIAN_STOP_DISTANCE_POINTS",
+      "MEDIAN_TARGET_DISTANCE_POINTS",
+      "MEDIAN_COST_ADJUSTED_RR",
+      "BUY_SELL_PASS_RATE"
+    ],
+    "paired_test": "MCNEMAR_EXACT",
+    "effect_interval": "PAIRED_BOOTSTRAP_95_FIXED_SEED_98099",
+    "familywise_alpha": 0.05,
+    "planned_primary_contrasts": 3,
+    "bonferroni_alpha": 0.016666666666666666,
+    "missing_geometry": "REPORT_SEPARATELY_NEVER_IMPUTE",
+    "context_analysis": "DESCRIPTIVE_ONLY_NO_FILTER_CREATION"
+  },
+  "train_only_experiment_gate": {
+    "minimum_common_support_records": 200,
+    "minimum_absolute_pass_rate_improvement": 0.05,
+    "minimum_relative_coverage_vs_control": 0.8,
+    "must_pass_corrected_significance": true,
+    "must_improve_both_directions": true,
+    "runtime_candidate_creation_allowed": false,
+    "deployment_authorized": false
+  },
+  "permitted_next_decisions": [
+    "NO_GO",
+    "CONTINUE_DIAGNOSTIC_RESEARCH",
+    "GO_TRAIN_ONLY_REPLAY"
+  ],
+  "safety": {
+    "runtime_changed": false,
+    "protected_modules_changed": false,
+    "minimum_rr_changed": false,
+    "entry_logic_changed": false,
+    "production_stop_logic_changed": false,
+    "production_target_logic_changed": false,
+    "validation_dataset_used": false,
+    "test_dataset_used": false,
+    "deployment_authorized": false
+  }
+}
