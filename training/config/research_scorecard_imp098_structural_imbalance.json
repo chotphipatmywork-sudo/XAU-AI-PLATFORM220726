@@ -1,0 +1,62 @@
+{
+  "scorecard_input_schema_version": "1.0.0",
+  "experiment_id": "IMP-098",
+  "candidate_id": "imp089_current_feed_baseline_structural_imbalance_audited",
+  "candidate_role": "BASELINE",
+  "evidence_date": "2026-07-26",
+  "evidence_hashes": {
+    "imp097_root_cause": "403AB570A756A9C6F708BDB7B62E4A56644D138AAC675ED72FCD10E73191000C",
+    "imp097_detail_records": "AB32EC7B6212DBD78169DB9339B666CA3A6076381B2152D827E272AF1805B83D",
+    "imp098_root_cause": "873BCD413B07C7CD6D80B5728DC9152808D51751A4F1DB3D21167FAD37C8CE47",
+    "imp098_detail_records": "BBF932A3DCB7789E8AFCA157E467CF6DF3905789543D67BCB334E2FC5813EF86"
+  },
+  "research_quality": {
+    "hypothesis_preregistered": true,
+    "artifact_hashes_verified": true,
+    "past_only_enforced": true,
+    "validation_sealed": true,
+    "test_sealed": true,
+    "data_quality_coverage_rate": 1.0,
+    "replay_parity_passed": true,
+    "regression_passed": true,
+    "compile_clean": true,
+    "effective_sample_audited": true,
+    "safety_governance_passed": true
+  },
+  "strategy_evidence": {
+    "mature_records": 31,
+    "effective_sample_records": 31,
+    "minimum_effective_sample": 200,
+    "mean_cost_aware_r": -0.11967599520045,
+    "mean_r_ci95_lower": null,
+    "drawdown_gate_passed": false,
+    "positive_chronological_blocks": 2,
+    "chronological_blocks_tested": 4,
+    "positive_directions": 1,
+    "directions_tested": 2,
+    "cost_stress_passed": false,
+    "ranker_required": false,
+    "ranker_passing_folds": 0,
+    "ranker_total_folds": 0,
+    "locked_validation_passed": false,
+    "forward_shadow_passed": false
+  },
+  "operational_safety": {
+    "focused_tests_passed": true,
+    "runtime_compile_clean": true,
+    "regression_passed": true,
+    "safety_locks_valid": true,
+    "broker_state_unchanged": true,
+    "artifact_set_complete": true,
+    "deployment_authorized": false
+  },
+  "notes": [
+    "IMP-098 diagnoses the frozen IMP-097 population without changing Entry, Stop, Target, cost, or the 2.0R gate.",
+    "Rejected geometry has a 2.5143x Stop median and 0.3748x Target median versus accepted geometry.",
+    "Stop-1-to-2 depth expansion and limited selected Target distance are mechanically plausible contributors.",
+    "Entry span position is mechanically coupled to RR and cannot independently prove late entry.",
+    "Structure age and move-origin timing are unobservable in the frozen evidence.",
+    "The 18:00-23:59 association remains correlational and is not a Runtime filter.",
+    "Runtime, Protected Modules, Validation, Test, Deployment, and the accepted Baseline remain unchanged."
+  ]
+}

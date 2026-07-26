@@ -318,3 +318,4 @@ Version Date    Change Description
 - [IMP-095 Current-Feed Joint Geometry Frontier](../architecture/implementation/IMP-095_Current_Feed_Joint_Geometry_Frontier.md)
 - [IMP-096 Current-Feed Joint Geometry M5 Causal Replay](../architecture/implementation/IMP-096_Current_Feed_Joint_Geometry_M5_Causal_Replay.md)
 - [IMP-097 Current-Feed RR Rejection Root Cause](../architecture/implementation/IMP-097_Current_Feed_RR_Rejection_Root_Cause.md)
+- [IMP-098 Structural Stop-to-Target Imbalance Root Cause](../architecture/implementation/IMP-098_Structural_Stop_Target_Imbalance_Root_Cause.md)
