@@ -180,6 +180,8 @@ Testing
 Review
       ↓
 Completion
+```
+
 Documentation Maintenance Rules
 
 All documentation updates must:
@@ -307,7 +309,7 @@ Related active research change requests:
 
 Version Date    Change Description
 1.0.0   Phase 0.3   Initial Project Documentation Index created
-# Current-feed research
+## Current-feed research
 
 - [IMP-089 Current-Feed Setup Funnel Diagnostic](../architecture/implementation/IMP-089_Current_Feed_Setup_Funnel_Diagnostic.md)
 - [IMP-090 Current-Feed Past-Only Target Ladder](../architecture/implementation/IMP-090_Current_Feed_Past_Only_Target_Ladder.md)
@@ -322,3 +324,7 @@ Version Date    Change Description
 - [IMP-099 Train-only Geometry Component Experiment Preregistration](../architecture/implementation/IMP-099_Train_Only_Geometry_Component_Experiment_Preregistration.md)
 - [IMP-100 Train-only Geometry Causal Replay](../architecture/implementation/IMP-100_Train_Only_Geometry_Causal_Replay.md)
 - [PER-100 Post-Experiment Review](../architecture/implementation/PER-100_Post_Experiment_Review.md)
+- [IMP-101 Post-Entry Behaviour Research Design](../architecture/implementation/IMP-101_Research_Design.md)
+- [IMP-101A Diagnostic Data Specification](../architecture/implementation/IMP-101A_Diagnostic_Data_Specification.md)
+- [IMP-101C Diagnostic Analysis](../architecture/implementation/IMP-101C_Diagnostic_Analysis.md)
+- [IMP-101C Statistical Appendix](../architecture/implementation/IMP-101C_Statistical_Appendix.md)
