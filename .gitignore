@@ -42,9 +42,14 @@ Desktop.ini
 build/
 bin/
 obj/
-outputs/
 training/output/
 work/
+
+# -----------------------
+# Logging Source Files
+# -----------------------
+!core/logging/outputs/
+!core/logging/outputs/*.mqh
 
 # -----------------------
 # Python Environments And Cache
