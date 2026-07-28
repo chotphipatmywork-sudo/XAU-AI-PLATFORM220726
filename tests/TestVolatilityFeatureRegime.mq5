@@ -20,6 +20,9 @@ int OnInit()
    CVolatilityAnalyzer analyzer;
    const CVolatilityResult result=analyzer.Analyze(context);
    const bool valid=(result.ATR>0.0 &&
+                     result.ADR>0.0 &&
+                     result.ExpansionScore>=0.0 &&
+                     result.CompressionScore>=0.0 &&
                      result.AIVolatilityRegime>=0.0 &&
                      result.AIVolatilityRegime<=100.0 &&
                      result.AIVolatilityChange>=0.0 &&

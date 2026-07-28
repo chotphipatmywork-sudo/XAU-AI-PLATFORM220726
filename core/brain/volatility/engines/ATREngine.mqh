@@ -39,6 +39,10 @@ public:
    {
       CATRResult result;
 
+      if(context.Symbol=="" || context.Bars<=0 || context.Shift<0 ||
+         m_config.ATRPeriod<=0 || m_config.AIRegimeLookback<=0)
+         return result;
+
       //------------------------------------------
       // Build Indicator Context
       //------------------------------------------
@@ -57,7 +61,8 @@ public:
 
       provider.SetContext(indicatorContext);
 
-      provider.Update();
+      if(!provider.Update())
+         return result;
 
       double atr_values[];
       if(!provider.GetATRValues(
@@ -65,6 +70,9 @@ public:
             0,
             m_config.AIRegimeLookback+1,
             atr_values))
+         return result;
+
+      if(ArraySize(atr_values)<2 || atr_values[0]<=0.0 || atr_values[1]<=0.0)
          return result;
 
       result.Value=atr_values[0];
