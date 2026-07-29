@@ -328,3 +328,16 @@ Version Date    Change Description
 - [IMP-101A Diagnostic Data Specification](../architecture/implementation/IMP-101A_Diagnostic_Data_Specification.md)
 - [IMP-101C Diagnostic Analysis](../architecture/implementation/IMP-101C_Diagnostic_Analysis.md)
 - [IMP-101C Statistical Appendix](../architecture/implementation/IMP-101C_Statistical_Appendix.md)
+
+## Replacement artifact governance
+
+- [Replacement Canonical Artifact Specification](../architecture/implementation/REPLACEMENT_CANONICAL_ARTIFACT_SPECIFICATION.md)
+- [Replacement Artifact Identity Record](../architecture/implementation/REPLACEMENT_ARTIFACT_IDENTITY.md)
+- [Replacement Implementation Plan](../architecture/implementation/REPLACEMENT_IMPLEMENTATION_PLAN.md)
+- [Replacement Execution Authorization](../architecture/implementation/REPLACEMENT_EXECUTION_AUTHORIZATION.md)
+- [Replacement Artifact Storage Policy](../architecture/implementation/REPLACEMENT_ARTIFACT_STORAGE_POLICY.md)
+- [Replacement Manifest Contract](../architecture/implementation/REPLACEMENT_MANIFEST_CONTRACT.md)
+- [Replacement Architecture Review](../architecture/implementation/REPLACEMENT_ARCHITECTURE_REVIEW.md)
+- [Replacement Technical Review](../architecture/implementation/REPLACEMENT_TECHNICAL_REVIEW.md)
+- [Replacement Project Approval](../architecture/implementation/REPLACEMENT_PROJECT_APPROVAL.md)
+- [Replacement Governance Decision](../architecture/implementation/REPLACEMENT_GOVERNANCE_DECISION.md)
