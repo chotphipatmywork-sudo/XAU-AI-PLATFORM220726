@@ -42,6 +42,13 @@ class FeaturePipelineTests(unittest.TestCase):
             data = json.loads(manifest.read_text(encoding="utf-8"))
             self.assertEqual(data["feature_names"], list(FEATURE_NAMES))
             self.assertFalse(data["labels_generated"])
+            self.assertEqual(data["research_track_id"], "CONTROLLED_RESEARCH_REGENERATION")
+            self.assertEqual(data["encoding"], "UTF-8")
+
+    def test_reject_record_accounting(self):
+        with tempfile.TemporaryDirectory() as root:
+            _, output, manifest = self.generate_case(root); data=json.loads(manifest.read_text()); data["record_count"]=999; manifest.write_text(json.dumps(data), encoding="utf-8")
+            self.assertIn("record accounting mismatch", validate_features(output, manifest))
 
     def test_reject_duplicate(self):
         with tempfile.TemporaryDirectory() as root:

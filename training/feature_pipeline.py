@@ -36,7 +36,7 @@ def generate_features(source: Path, output: Path, manifest: Path, source_identit
             rng=h-l; prev=closes[-2] if len(closes)>1 else None
             vals=[c/prev-1 if prev else None, c/closes[-4]-1 if len(closes)>3 else None, rng, c-o, h-max(o,c), min(o,c)-l, (c-o)/rng if rng else 0.0, rng/c if c else 0.0, mean(closes[-rolling_window:]) if len(closes)>=rolling_window else None, pstdev(closes[-rolling_window:]) if len(closes)>=rolling_window else None]
             w.writerow({**{k:row[k] for k in IDENTITY}, **dict(zip(FEATURE_NAMES, map(_value, vals)))})
-    payload={"manifest_version":"1.0.0","feature_schema_version":"1.0.0","source_dataset_identity":source_identity,"source_dataset_sha256":source_hash,"feature_dataset_sha256":sha256(output),"feature_names":list(FEATURE_NAMES),"feature_count":len(FEATURE_NAMES),"record_count":len(rows),"labels_generated":False,"generated_at_utc":datetime.now(timezone.utc).isoformat().replace("+00:00","Z")}
+    payload={"manifest_version":"1.0.0","research_track_id":"CONTROLLED_RESEARCH_REGENERATION","feature_schema_version":"1.0.0","feature_set_id":"FEATURE-FOUNDATION-001","source_dataset_identity":source_identity,"source_dataset_sha256":source_hash,"feature_dataset_identity":output.stem,"feature_dataset_sha256":sha256(output),"feature_names":list(FEATURE_NAMES),"feature_count":len(FEATURE_NAMES),"record_count":len(rows),"labels_generated":False,"encoding":"UTF-8","newline":"LF","generated_at_utc":datetime.now(timezone.utc).isoformat().replace("+00:00","Z")}
     manifest.parent.mkdir(parents=True, exist_ok=True); manifest.write_text(json.dumps(payload,sort_keys=True,indent=2)+"\n",encoding="utf-8")
 
 def validate_features(dataset: Path, manifest: Path, rolling_window=3):
@@ -64,4 +64,7 @@ def validate_features(dataset: Path, manifest: Path, rolling_window=3):
     else:
         m=json.loads(manifest.read_text(encoding="utf-8"));
         if m.get("feature_dataset_sha256") != sha256(dataset): errors.append("manifest/hash mismatch")
+        if m.get("feature_dataset_identity") != dataset.stem or m.get("research_track_id") != "CONTROLLED_RESEARCH_REGENERATION": errors.append("manifest identity mismatch")
+        if m.get("record_count") != len(rows): errors.append("record accounting mismatch")
+        if m.get("feature_names") != list(FEATURE_NAMES) or m.get("feature_count") != len(FEATURE_NAMES): errors.append("feature schema mismatch")
     return sorted(set(errors))
